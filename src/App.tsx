@@ -1,16 +1,9 @@
 import React, { useState } from "react";
 import "./style/index.css";
-import Button from "@mui/material/Button";
-import CheckBox from "@mui/icons-material/CheckBox";
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
-import Favorite from "@mui/icons-material/Favorite";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Checkbox from "@mui/material/Checkbox";
-import Avatar from "@mui/material/Avatar";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import checklists from "./data";
 
@@ -39,17 +32,27 @@ function LinearProgressWithLabel(
 
 function App() {
   /// user choses a checklist, we get its ID
-  const checklist_chosen = 1;
 
-  const [currentChecklist, setCurrentChecklist] = useState(
-    checklists[checklist_chosen]
-  );
+  const [showPages, setShowPages] = useState(true);
+
+  const [currentChecklist, setCcurrentChecklist] = useState(checklists[0]);
 
   /// track the current question
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
   /// show the result
   const [showResult, setShowResult] = useState(false);
+
+  const [checked, setChecked] = React.useState<number[]>([]);
+  const [answers, setAnswers] = React.useState<number[]>([]);
+
+  //// hide questions when change... for animation
+  const [hidden, setHidden] = React.useState(false);
+
+  const quizzes = checklists.map(({ title, description }: any) => ({
+    title,
+    description,
+  }));
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -58,6 +61,8 @@ function App() {
       setShowResult(true);
       return;
     }
+    // setAnswers((prev) => [...prev, ...checked]);
+    // alert(answers);
     setChecked([]);
 
     setTimeout(() => {
@@ -65,11 +70,6 @@ function App() {
       setHidden(false);
     }, 500);
   };
-
-  const [checked, setChecked] = React.useState<number[]>([]);
-
-  //// hide questions when change... for anumation
-  const [hidden, setHidden] = React.useState(false);
 
   const handleToggle = (value: number) => () => {
     const currentIndex = checked.indexOf(value);
@@ -91,6 +91,30 @@ function App() {
     setShowResult(false);
     setHidden(false);
   };
+
+  if (showPages)
+    return (
+      <div className='App'>
+        <div className='checklist__intro__container'>
+          <h1>
+            Use these scored checklists to increase your conversion rate and
+            revenue.
+          </h1>
+          <ul className='checklist__ul'>
+            {quizzes.map(({ title }: any, idx: number) => (
+              <li
+                key={idx}
+                onClick={() => {
+                  setCcurrentChecklist(checklists[idx]);
+                  setShowPages(false);
+                }}>
+                {title}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    );
 
   return (
     <div className='App'>
@@ -136,17 +160,22 @@ function App() {
             {showResult ? (
               <>
                 {/* the last stage show result  */}
-                <h2
-                  style={{ display: "grid", placeContent: "center", flex: 1 }}>
-                  Please Check Your Inbox... the result has been sent there 🚀
-                  <Button
-                    sx={{ width: "100px", margin: "1em auto" }}
-                    className='submit'
-                    variant='contained'
-                    onClick={handleComeBack}>
+                <h1
+                  style={{
+                    display: "grid",
+                    placeContent: "center",
+                    flex: 1,
+                  }}>
+                  Your score:{" "}
+                  {`${
+                    (answers.length * currentChecklist.questions.length) / 100
+                  }% 🚀`}
+                  <button
+                    className='submit goBack'
+                    onClick={() => setShowPages(true)}>
                     BACK
-                  </Button>
-                </h2>
+                  </button>
+                </h1>
               </>
             ) : (
               <>
@@ -178,13 +207,9 @@ function App() {
                         ? "FINISH"
                         : "NEXT"}
                     </b>
-                    <Button
-                      type='submit'
-                      className='submit'
-                      variant='contained'
-                      color='secondary'>
+                    <button type='submit' className='submit'>
                       <ArrowForwardIcon />
-                    </Button>
+                    </button>
                   </div>
                 </div>
                 <List className={hidden ? `options hidden` : `options`} dense>

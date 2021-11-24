@@ -18,6 +18,30 @@ a * {
   cursor: pointer;
 }
 
+button {
+  background-color: #497fe0;
+  min-width: 35px !important;
+  max-width: 35px !important;
+  border-radius: 50%;
+  height: 35px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  font-size: 1.3em;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+  color: white;
+}
+
+span {
+  line-height: 1.5;
+  max-width: 100ch;
+  text-align: justify;
+}
+
 input,
 input * {
   cursor: text;
@@ -40,8 +64,7 @@ html {
 }
 
 body {
-  background: #f0f0f0;
-  background-image: url("https://78.media.tumblr.com/dadfa56320f18778505f2f45ced957fa/tumblr_nh6x7cFagI1u3bn17o1_1280.gif");
+  background: #e7f5f8;
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -202,6 +225,18 @@ body {
   padding-inline: 1em;
 }
 
+.checklist__container .checklist_form_QA .checklist__questions button.goBack {
+  width: 150px;
+  margin: 1em auto;
+  max-width: 150px !important;
+  padding: 0.8em 1em;
+  border-radius: 5px;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions button.goBack:hover {
+  opacity: 0.9;
+}
+
 .checklist__container .checklist_form_QA .checklist__questions .form_header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -307,19 +342,9 @@ body {
   font-weight: 900;
 }
 
-.checklist__container .checklist_form_QA .checklist__questions .form_header .submit__container button,
-.checklist__container .checklist_form_QA .checklist__questions .form_header .back__container button {
-  background-color: #497fe0;
-  min-width: 35px !important;
-  max-width: 35px !important;
-  border-radius: 50%;
-  height: 35px;
-  padding: 0;
-  margin: 0;
-  border: none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  font-size: 1.3em;
+.checklist__container .checklist_form_QA .checklist__questions .options {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 2em;
 }
 
 .checklist__container .checklist_form_QA .checklist__questions .options .option {
@@ -335,6 +360,10 @@ body {
 .checklist__container .checklist_form_QA .checklist__questions .options .option,
 .checklist__container .checklist_form_QA .checklist__questions .options .option * {
   cursor: pointer;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .options .option div:first-child {
+  padding-block: 1em;
 }
 
 .checklist__container .checklist_form_QA .checklist__questions .options .option:hover {
@@ -389,5 +418,49 @@ body {
 
 .checklist__container .checklist_form_QA .checklist__questions .options .option p.option_details span:nth-child(2n + 3) {
   background: rgba(23, 107, 51, 0.6);
+}
+
+.checklist__intro__container h1 {
+  text-align: center;
+  font-weight: bold;
+  margin: 1em;
+}
+
+.checklist__intro__container .checklist__ul {
+  list-style: none;
+  padding: calc(min(2em, 5vw));
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: calc(min(2em, 5vw));
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.checklist__intro__container .checklist__ul li {
+  font-size: 1.6em;
+  border: 3px solid pink;
+  padding: 1em;
+  border-radius: 2em;
+  font-weight: 400;
+  cursor: pointer;
+  -webkit-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+}
+
+.checklist__intro__container .checklist__ul li:first-child {
+  color: white;
+  background: #cd1c6c;
+  border-color: #cd1c6c;
+}
+
+.checklist__intro__container .checklist__ul li:first-child:hover {
+  color: black;
+}
+
+.checklist__intro__container .checklist__ul li:hover {
+  background-color: rgba(205, 28, 108, 0.125);
 }
 /*# sourceMappingURL=index.css.map */
