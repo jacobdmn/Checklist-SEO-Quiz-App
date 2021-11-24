@@ -1,0 +1,393 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  cursor: default;
+  -webkit-box-sizing: border-box !important;
+          box-sizing: border-box !important;
+  font-family: "Roboto", monospace !important;
+  font-weight: 300;
+}
+
+button *,
+button,
+svg,
+path,
+a * {
+  cursor: pointer;
+}
+
+input,
+input * {
+  cursor: text;
+}
+
+.kinda-title {
+  font-family: "M PLUS 2", sans-serif;
+  font-weight: 400;
+}
+
+html {
+  color: black;
+  height: 100vh;
+  overflow: scroll;
+  scrollbar-color: white;
+  max-width: 1500px;
+  margin-inline: auto;
+  position: relative;
+  font-size: 13px;
+}
+
+body {
+  background: #f0f0f0;
+  background-image: url("https://78.media.tumblr.com/dadfa56320f18778505f2f45ced957fa/tumblr_nh6x7cFagI1u3bn17o1_1280.gif");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  min-height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  letter-spacing: 1px;
+}
+
+.hidden {
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  opacity: 0 !important;
+}
+
+.hidden-display {
+  display: none !important;
+}
+
+.checklist__container {
+  background: #ffffff;
+  width: 95vw;
+  max-width: 1170px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 2em;
+  border-radius: 10px;
+  place-content: center;
+}
+
+.checklist__container .checklist__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1em;
+}
+
+.checklist__container .progressBar_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1em;
+  padding: calc(min(2em, 5vw));
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: linear-gradient(98deg, #004cd0 50%, #4c82e1);
+  color: white;
+  border-radius: 15px;
+  -webkit-box-shadow: 0px 10px 30px rgba(0, 76, 208, 0.1);
+          box-shadow: 0px 10px 30px rgba(0, 76, 208, 0.1);
+  margin-bottom: 20px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0.7em;
+}
+
+.checklist__container .progressBar_container .progressBar_pages_counter {
+  width: calc(max(30%, 20ch));
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 800;
+  position: relative;
+}
+
+.checklist__container .progressBar_container .progressBar_pages_counter .circle_gradient {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  z-index: 1;
+  top: calc(50% - 30px);
+  background: -webkit-gradient(linear, left top, right top, color-stop(20%, #ffffff00), to(#ffffff30));
+  background: linear-gradient(90deg, #ffffff00 20%, #ffffff30 100%);
+  border-radius: 30px;
+  left: -10px;
+}
+
+.checklist__container .progressBar_container .progressBar_pages_counter .counter {
+  opacity: 0.8;
+  font-weight: 600;
+}
+
+.checklist__container .progressBar_container .progressBar_percentage_counter {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-width: 300px;
+  height: 8px;
+  background-color: #ffffff20;
+  position: relative;
+  z-index: 1;
+  border: 20px solid transparent;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+
+.checklist__container .progressBar_container .progressBar_percentage_counter > div {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.checklist__container .progressBar_container .progressBar_percentage_counter > div > div:nth-child(2) p {
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.checklist__container .checklist_form_QA {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 2em;
+  min-height: 70vh;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  overflow-y: scroll;
+  scrollbar-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1em;
+  padding-inline: 1em;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .form_header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .form_header h3.questionTitle {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.3em;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .form_header h3.questionTitle .icon {
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  background: pink;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  color: black;
+  position: relative;
+  z-index: 1;
+  font-size: 2em;
+  font-weight: 900;
+  -webkit-box-shadow: 0 0 0.1em 0em pink;
+          box-shadow: 0 0 0.1em 0em pink;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .form_header h3.questionTitle .text {
+  border-radius: 5em;
+  background: linear-gradient(98deg, #004cd0 50%, #4c82e1);
+  padding: 1em;
+  padding-left: 3em;
+  position: relative;
+  left: -2.5em;
+  color: #ffffff;
+  -webkit-box-shadow: 0 0 0.1em 0em #004cd0;
+          box-shadow: 0 0 0.1em 0em #004cd0;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .form_header .submit__container {
+  border: 4px solid #497fe0;
+  margin-left: 1em;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .form_header .submit__container,
+.checklist__container .checklist_form_QA .checklist__questions .form_header .back__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.4em;
+  bottom: 0;
+  left: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  padding: 0.3em 0.6em;
+  border-radius: 5px;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .form_header .submit__container,
+.checklist__container .checklist_form_QA .checklist__questions .form_header .submit__container *,
+.checklist__container .checklist_form_QA .checklist__questions .form_header .back__container,
+.checklist__container .checklist_form_QA .checklist__questions .form_header .back__container * {
+  cursor: pointer;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .form_header .submit__container:hover,
+.checklist__container .checklist_form_QA .checklist__questions .form_header .back__container:hover {
+  background: #3974dc24;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .form_header .submit__container:hover *,
+.checklist__container .checklist_form_QA .checklist__questions .form_header .back__container:hover * {
+  -webkit-transform: scale(0.99);
+          transform: scale(0.99);
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .form_header .submit__container > div,
+.checklist__container .checklist_form_QA .checklist__questions .form_header .back__container > div {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .form_header .submit__container > b,
+.checklist__container .checklist_form_QA .checklist__questions .form_header .back__container > b {
+  opacity: 0.6;
+  font-size: 1em;
+  font-weight: 900;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .form_header .submit__container button,
+.checklist__container .checklist_form_QA .checklist__questions .form_header .back__container button {
+  background-color: #497fe0;
+  min-width: 35px !important;
+  max-width: 35px !important;
+  border-radius: 50%;
+  height: 35px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  font-size: 1.3em;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .options .option {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 2em;
+  border-bottom: 1px solid #d9d9d9;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .options .option,
+.checklist__container .checklist_form_QA .checklist__questions .options .option * {
+  cursor: pointer;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .options .option:hover {
+  background-color: #ffffff;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .options .option h3 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.3em;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .options .option h3 span.option_icon img {
+  height: 100%;
+  width: 50px;
+  vertical-align: middle;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .options .option h3 span.option_text {
+  font-weight: 400;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .options .option p.option_details {
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 1em;
+  padding-left: 3em;
+  margin: 0.5em;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .options .option p.option_details span {
+  font-weight: 500;
+  padding: 0.5em 1em;
+  border-radius: 10px;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .options .option p.option_details span:nth-child(2n) {
+  background: #838383;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .options .option p.option_details span:nth-child(2n + 1) {
+  background: rgba(129, 131, 33, 0.6);
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .options .option p.option_details span:nth-child(2n + 3) {
+  background: rgba(23, 107, 51, 0.6);
+}
+/*# sourceMappingURL=index.css.map */
