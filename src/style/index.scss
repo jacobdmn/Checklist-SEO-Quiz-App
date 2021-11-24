@@ -355,7 +355,7 @@ body {
     flex-wrap: wrap;
     justify-content: space-around;
 
-    li {
+    li a {
       font-size: 1.6em;
       border: 3px solid pink;
       padding: 1em;
@@ -363,7 +363,7 @@ body {
       font-weight: 400;
       cursor: pointer;
       transition: all 0.15s ease-in-out;
-      &:first-child {
+      &.isSelected {
         color: white;
         background: #cd1c6c;
         border-color: #cd1c6c;

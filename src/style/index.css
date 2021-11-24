@@ -450,13 +450,13 @@ body {
   transition: all 0.15s ease-in-out;
 }
 
-.checklist__intro__container .checklist__ul li:first-child {
+.checklist__intro__container .checklist__ul li.isSelected {
   color: white;
   background: #cd1c6c;
   border-color: #cd1c6c;
 }
 
-.checklist__intro__container .checklist__ul li:first-child:hover {
+.checklist__intro__container .checklist__ul li.isSelected:hover {
   color: black;
 }
 
