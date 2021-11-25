@@ -211,7 +211,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 2em;
-    min-height: 70vh;
+    // min-height: 70vh;
+    padding-bottom: 2em;
     .checklist__questions {
       flex: 1;
       overflow-y: scroll;

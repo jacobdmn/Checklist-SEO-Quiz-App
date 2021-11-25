@@ -234,7 +234,7 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 2em;
-  min-height: 70vh;
+  padding-bottom: 2em;
 }
 
 .checklist__container .checklist_form_QA .checklist__questions {
