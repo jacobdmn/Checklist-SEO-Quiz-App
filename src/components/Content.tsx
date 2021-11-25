@@ -10,7 +10,6 @@ import LinearProgress, {
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Link } from "react-router-dom";
 
 import { useLocation } from "react-router-dom";
 
@@ -32,9 +31,6 @@ function LinearProgressWithLabel(
 }
 
 const Content = ({ checklist }: { checklist: any }) => {
-  //// hide questions when change... for animation purposes
-  const [hidden, setHidden] = React.useState(false);
-
   /// track the current question
   const [currentQuestion, setCurrentQuestion] = useState(0);
   /// show the result
@@ -78,9 +74,7 @@ const Content = ({ checklist }: { checklist: any }) => {
     }
 
     setCurrentQuestion((prev) => prev + 1);
-    setTimeout(() => {
-      setHidden(false);
-    }, 500);
+    setTimeout(() => {}, 500);
     setCheckedAnswersPerQuestion([]);
   };
 
@@ -89,7 +83,6 @@ const Content = ({ checklist }: { checklist: any }) => {
       ? setCurrentQuestion(0)
       : setCurrentQuestion((prev) => prev - 1);
     setShowResult(false);
-    setHidden(false);
   };
 
   const { pathname } = useLocation();
@@ -97,7 +90,6 @@ const Content = ({ checklist }: { checklist: any }) => {
   useEffect(() => {
     setCurrentQuestion(0);
     setShowResult(false);
-    setHidden(false);
   }, [pathname]);
 
   let numberOfAllOptions = 0;
@@ -196,7 +188,7 @@ const Content = ({ checklist }: { checklist: any }) => {
                   </button>
                 </div>
               </div>
-              <List className={hidden ? `options hidden` : `options`} dense>
+              <List className='options' dense>
                 {currentQuestion <= checklist.questions.length - 1 &&
                   checklist.questions[currentQuestion].options.map(
                     (option: any, index: number) => (
