@@ -98,7 +98,9 @@ body {
   min-height: 100vh;
   display: -ms-grid;
   display: grid;
-  place-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   letter-spacing: 1px;
 }
 
