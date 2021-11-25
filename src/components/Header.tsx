@@ -11,7 +11,7 @@ const Header = () => {
       <ul className='checklist__ul'>
         <li>
           <NavLink
-            to='/general'
+            to='/'
             className={({ isActive }) => (isActive ? "Selected" : "")}>
             General Checklist
           </NavLink>

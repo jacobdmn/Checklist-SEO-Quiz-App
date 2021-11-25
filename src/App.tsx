@@ -13,10 +13,7 @@ function App() {
       <div className='App'>
         <Header />
         <Routes>
-          <Route
-            path='/general'
-            element={<Content checklist={checklists[0]} />}
-          />
+          <Route path='/' element={<Content checklist={checklists[0]} />} />
           <Route
             path='/landing-pages'
             element={<Content checklist={checklists[1]} />}
