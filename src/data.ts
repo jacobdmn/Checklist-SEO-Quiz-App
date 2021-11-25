@@ -123,7 +123,6 @@ const checklists = [
               "Boldest color for CTA buttons",
               "Twice the size & font weight of body text",
               "Directional cues like eye gaze or arrows to CTA buttons",
-              "Directional cues like eye gaze or arrows to CTA buttons",
               "CTAs in their own clear space",
               "CTAs are enticing to click",
               "CTA after each content section",

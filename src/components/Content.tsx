@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import "./style/index.css";
+import React, { useState, useEffect } from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -10,7 +9,10 @@ import LinearProgress, {
 } from "@mui/material/LinearProgress";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
 import { Link } from "react-router-dom";
+
+import { useLocation } from "react-router-dom";
 
 function LinearProgressWithLabel(
   props: LinearProgressProps & { value: number }
@@ -39,39 +41,47 @@ const Content = ({ checklist }: { checklist: any }) => {
   const [showResult, setShowResult] = useState(false);
 
   /// to store all answers
-  const [answers, setAnswers] = useState<number[][]>([[]]);
+  const [answers, setAnswers] = useState<any[]>([]);
 
-  const [checkAnswersPerQuestion, setCheckAnswersPerQuestion] = useState<
+  const [checkedAnswersPerQuestion, setCheckedAnswersPerQuestion] = useState<
     number[]
   >([]);
 
   /// add checked node to checked list
-  const handleToggle = (value: number) => () => {
-    setHidden(true);
-    if (currentQuestion === checklist.questions.length - 1) {
-      setShowResult(true);
-      return;
+  const handleToggle = (indexOfOption: number) => () => {
+    console.log("before: " + checkedAnswersPerQuestion);
+    let tmp;
+    if (checkedAnswersPerQuestion.includes(indexOfOption)) {
+      tmp = checkedAnswersPerQuestion.filter(
+        (index: number) => index !== indexOfOption
+      );
+    } else {
+      tmp = [...checkedAnswersPerQuestion, indexOfOption];
     }
-
-    checkAnswersPerQuestion.indexOf(value) === -1
-      ? setCheckAnswersPerQuestion((prev) => [...prev, value])
-      : setCheckAnswersPerQuestion((prev) =>
-          prev.splice(checkAnswersPerQuestion.indexOf(value))
-        );
-
-    setTimeout(() => {
-      setCurrentQuestion((prev) => prev + 1);
-      setHidden(false);
-    }, 500);
+    setCheckedAnswersPerQuestion([...tmp]);
+    console.log("after: " + tmp);
   };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
-    setAnswers((prev) => {
-      prev[prev.indexOf(checklist)] = checkAnswersPerQuestion;
-      return prev;
-    });
+    setHidden(true);
+
+    answers[currentQuestion] = [...checkedAnswersPerQuestion];
+    setAnswers(answers);
+
+    if (currentQuestion === checklist.questions.length - 1) {
+      setShowResult(true);
+      setCheckedAnswersPerQuestion([]);
+      setCurrentQuestion(0);
+      return;
+    }
+
+    setTimeout(() => {
+      setCurrentQuestion((prev) => prev + 1);
+      setHidden(false);
+    }, 500);
+    setCheckedAnswersPerQuestion([]);
   };
 
   const handleComeBack = () => {
@@ -82,12 +92,21 @@ const Content = ({ checklist }: { checklist: any }) => {
     setHidden(false);
   };
 
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    setCurrentQuestion(0);
+    setShowResult(false);
+    setHidden(false);
+  }, [pathname]);
+
+  let numberOfAllOptions = 0;
+  checklist.questions.forEach((qst: any) => {
+    numberOfAllOptions += qst.options.length;
+  });
+
   return (
     <div className='checklist__container'>
-      {/* <div className='checklist__title'>
-          <h2 className='kinda-title'>{checklist.title}</h2>
-          <p>{checklist.description}</p>
-        </div> */}
       <div className='progressBar_container'>
         <div className='progressBar_pages_counter'>
           <div className='circle_gradient'></div>
@@ -120,16 +139,28 @@ const Content = ({ checklist }: { checklist: any }) => {
         <div className='checklist__questions'>
           {showResult ? (
             <>
-              {/* the last stage show result  */}
-              <h1
-                style={{
-                  display: "grid",
-                  placeContent: "center",
-                  flex: 1,
-                }}>
+              {/* equation: get the number of all options on all questions and divide by it */}
+              <h1>
                 Your score:{" "}
-                {`${(answers.length * checklist.questions.length) / 100}% 🚀`}
-                <Link to='/'>BACK</Link>
+                {`${(
+                  (answers.flat().length * 100) /
+                  numberOfAllOptions
+                ).toFixed(0)}% 🚀`}
+                <br />
+                Wanna take You website to the next level?
+                <br />
+                Subscribe to receive Daily SEO Tips
+                <TextField
+                  id='outlined-name'
+                  label='Email'
+                  variant='outlined'
+                  sx={{
+                    width: "300px",
+                    input: {
+                      height: "5em",
+                    },
+                  }}
+                />
               </h1>
             </>
           ) : (
@@ -165,58 +196,59 @@ const Content = ({ checklist }: { checklist: any }) => {
                 </div>
               </div>
               <List className={hidden ? `options hidden` : `options`} dense>
-                {checklist.questions[currentQuestion].options.length > 0 &&
-                  checklist.questions[currentQuestion].options.map(
-                    (option: any, index: number) => (
-                      <ListItem
-                        className='option'
-                        key={index}
-                        onClick={handleToggle(index)}
-                        secondaryAction={
-                          <Checkbox
-                            edge='end'
-                            onChange={handleToggle(index)}
-                            checked={
-                              checkAnswersPerQuestion.indexOf(index) !== -1
-                            }
-                            inputProps={{
-                              "aria-labelledby": option.optionTitle,
-                            }}
-                            sx={{
-                              transform: "scale(1.5)",
-                            }}
-                          />
-                        }
-                        disablePadding>
-                        <ListItemButton>
-                          <div>
-                            <h3>
-                              <span className='option_icon'>
-                                <img
-                                  src='https://cdn1.iconfinder.com/data/icons/powerful-seo-icon-set/512/rocket_1__.png'
-                                  alt=''
-                                />
-                              </span>
-                              <span className='option_text'>
-                                {option.optionTitle}
-                              </span>
-                            </h3>
-                            {option.optionDescription.length > 0 && (
-                              <p className='option_details'>
-                                {option.optionDescription.map(
-                                  (optionDescriptionNode: string) => (
-                                    <span key={optionDescriptionNode}>
-                                      {optionDescriptionNode}
-                                    </span>
-                                  )
-                                )}
-                              </p>
-                            )}
-                          </div>
-                        </ListItemButton>
-                      </ListItem>
-                    )
-                  )}
+                {checklist.questions[currentQuestion].options.map(
+                  (option: any, index: number) => (
+                    <ListItem
+                      className='option'
+                      key={`${
+                        option.optionTitle
+                      }${new Date().getMilliseconds()}`}
+                      onClick={handleToggle(index)}
+                      secondaryAction={
+                        <Checkbox
+                          edge='end'
+                          onChange={handleToggle(index)}
+                          checked={
+                            checkedAnswersPerQuestion.indexOf(index) !== -1
+                          }
+                          inputProps={{
+                            "aria-labelledby": option.optionTitle,
+                          }}
+                          sx={{
+                            transform: "scale(1.5)",
+                          }}
+                        />
+                      }
+                      disablePadding>
+                      <ListItemButton>
+                        <div>
+                          <h3>
+                            <span className='option_icon'>
+                              <img
+                                src='https://cdn1.iconfinder.com/data/icons/powerful-seo-icon-set/512/rocket_1__.png'
+                                alt=''
+                              />
+                            </span>
+                            <span className='option_text'>
+                              {option.optionTitle}
+                            </span>
+                          </h3>
+                          {option.optionDescription.length > 0 && (
+                            <p className='option_details'>
+                              {option.optionDescription.map(
+                                (optionDescriptionNode: string) => (
+                                  <span key={optionDescriptionNode}>
+                                    {optionDescriptionNode}
+                                  </span>
+                                )
+                              )}
+                            </p>
+                          )}
+                        </div>
+                      </ListItemButton>
+                    </ListItem>
+                  )
+                )}
               </List>
             </>
           )}

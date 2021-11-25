@@ -12,35 +12,35 @@ const Header = () => {
         <li>
           <NavLink
             to='/general'
-            className={(isSelected) => (isSelected ? "Selected" : "")}>
+            className={({ isActive }) => (isActive ? "Selected" : "")}>
             General Checklist
           </NavLink>
         </li>
         <li>
           <NavLink
             to='/landing-pages'
-            className={(isSelected) => (isSelected ? "Selected" : "")}>
+            className={({ isActive }) => (isActive ? "Selected" : "")}>
             Landing Pages
           </NavLink>
         </li>
         <li>
           <NavLink
             to='/home-pages'
-            className={(isSelected) => (isSelected ? "Selected" : "")}>
+            className={({ isActive }) => (isActive ? "Selected" : "")}>
             Home Pages
           </NavLink>
         </li>
         <li>
           <NavLink
             to='/product-pages'
-            className={(isSelected) => (isSelected ? "Selected" : "")}>
+            className={({ isActive }) => (isActive ? "Selected" : "")}>
             Product Pages
           </NavLink>
         </li>
         <li>
           <NavLink
             to='/cart-pages'
-            className={(isSelected) => (isSelected ? "Selected" : "")}>
+            className={({ isActive }) => (isActive ? "Selected" : "")}>
             Cart Pages
           </NavLink>
         </li>

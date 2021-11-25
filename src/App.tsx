@@ -1,5 +1,6 @@
 import "./style/index.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Header from "./components/Header";
 
 import Content from "./components/Content";
@@ -11,23 +12,28 @@ function App() {
     <Router>
       <div className='App'>
         <Header />
-        <Switch>
-          <Route exact to='/general'>
-            <Content checklist={checklists[0]} />
-          </Route>
-          <Route to='/landing-pages'>
-            <Content checklist={checklists[0]} />
-          </Route>
-          <Route to='/home-pages'>
-            <Content checklist={checklists[0]} />
-          </Route>
-          <Route to='/product-pages'>
-            <Content checklist={checklists[0]} />
-          </Route>
-          <Route to='/cart-pages'>
-            <Content checklist={checklists[0]} />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route
+            path='/general'
+            element={<Content checklist={checklists[0]} />}
+          />
+          <Route
+            path='/landing-pages'
+            element={<Content checklist={checklists[1]} />}
+          />
+          <Route
+            path='/home-pages'
+            element={<Content checklist={checklists[2]} />}
+          />
+          <Route
+            path='/product-pages'
+            element={<Content checklist={checklists[3]} />}
+          />
+          <Route
+            path='/cart-pages'
+            element={<Content checklist={checklists[4]} />}
+          />
+        </Routes>
       </div>
     </Router>
   );

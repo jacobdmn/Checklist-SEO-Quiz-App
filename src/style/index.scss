@@ -36,6 +36,30 @@ a * {
   cursor: pointer;
 }
 
+a {
+  text-decoration: none;
+
+  font-size: 1.6em;
+  border: 3px solid pink;
+  padding: 1em;
+  border-radius: 2em;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  &.Selected {
+    border-color: #cd1c6c;
+  }
+  &:hover {
+    background-color: rgba(205, 28, 108, 0.125);
+  }
+  &:visited {
+    color: black;
+  }
+}
+
+a {
+}
+
 button {
   background-color: $blue-light;
   min-width: 35px !important;
@@ -101,6 +125,8 @@ body {
 }
 
 .checklist__container {
+  margin-bottom: 2em;
+
   background: $theme;
   width: 95vw;
   max-width: 1170px;
@@ -195,6 +221,16 @@ body {
       gap: 1em;
       padding-inline: 1em;
 
+      h1 {
+        display: grid;
+        place-content: center;
+        flex: 1;
+        place-items: center;
+        gap: 1em;
+        font-weight: bold;
+        text-align: center;
+        line-height: 1.6;
+      }
       button.goBack {
         width: 150px;
         margin: 1em auto;
@@ -321,17 +357,10 @@ body {
             margin: 0.5em;
             span {
               font-weight: 500;
-              padding: 0.5em 1em;
+              padding: 1em 1.3em;
               border-radius: 10px;
-              &:nth-child(2n) {
-                background: #838383;
-              }
-              &:nth-child(2n + 1) {
-                background: $yellow;
-              }
-              &:nth-child(2n + 3) {
-                background: $green;
-              }
+              background: black !important;
+              font-size: 1.2em;
             }
           }
         }
@@ -341,6 +370,7 @@ body {
 }
 
 .checklist__intro__container {
+  margin-bottom: 2em;
   h1 {
     text-align: center;
     font-weight: bold;
@@ -354,26 +384,5 @@ body {
     gap: calc(min(2em, 5vw));
     flex-wrap: wrap;
     justify-content: space-around;
-
-    li a {
-      font-size: 1.6em;
-      border: 3px solid pink;
-      padding: 1em;
-      border-radius: 2em;
-      font-weight: 400;
-      cursor: pointer;
-      transition: all 0.15s ease-in-out;
-      &.isSelected {
-        color: white;
-        background: #cd1c6c;
-        border-color: #cd1c6c;
-        &:hover {
-          color: black;
-        }
-      }
-      &:hover {
-        background-color: rgba(205, 28, 108, 0.125);
-      }
-    }
   }
 }
