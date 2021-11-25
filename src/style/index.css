@@ -19,6 +19,7 @@ a * {
 }
 
 a {
+  color: black;
   text-decoration: none;
   font-size: 1.6em;
   border: 3px solid pink;
@@ -111,6 +112,7 @@ body {
 
 .checklist__container {
   margin-bottom: 2em;
+  margin-inline: auto;
   background: #ffffff;
   width: 95vw;
   max-width: 1170px;
@@ -283,9 +285,13 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 2em;
 }
 
 .checklist__container .checklist_form_QA .checklist__questions .form_header h3.questionTitle {
+  min-width: 320px;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -325,6 +331,17 @@ body {
   color: #ffffff;
   -webkit-box-shadow: 0 0 0.1em 0em #004cd0;
           box-shadow: 0 0 0.1em 0em #004cd0;
+}
+
+@media (max-width: 500px) {
+  .checklist__container .checklist_form_QA .checklist__questions .form_header h3.questionTitle .icon {
+    display: none;
+  }
+  .checklist__container .checklist_form_QA .checklist__questions .form_header h3.questionTitle .text {
+    border-radius: 0;
+    position: static;
+    padding-left: 1em;
+  }
 }
 
 .checklist__container .checklist_form_QA .checklist__questions .form_header .submit__container {
@@ -470,5 +487,11 @@ body {
       flex-wrap: wrap;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+}
+
+@media (max-width: 1100px) {
+  .checklist__intro__container ul li {
+    padding: 1.3em !important;
+  }
 }
 /*# sourceMappingURL=index.css.map */

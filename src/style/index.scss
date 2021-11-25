@@ -37,6 +37,7 @@ a * {
 }
 
 a {
+  color: $theme-font;
   text-decoration: none;
 
   font-size: 1.6em;
@@ -126,7 +127,7 @@ body {
 
 .checklist__container {
   margin-bottom: 2em;
-
+  margin-inline: auto;
   background: $theme;
   width: 95vw;
   max-width: 1170px;
@@ -245,7 +246,10 @@ body {
       .form_header {
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 2em;
         h3.questionTitle {
+          min-width: 320px;
           flex: 1;
           display: flex;
           align-items: center;
@@ -273,6 +277,17 @@ body {
             left: -2.5em;
             color: $theme;
             box-shadow: 0 0 0.1em 0em $blue;
+          }
+
+          @media (max-width: 500px) {
+            .icon {
+              display: none;
+            }
+            .text {
+              border-radius: 0;
+              position: static;
+              padding-left: 1em;
+            }
           }
         }
         .submit__container {
@@ -384,5 +399,11 @@ body {
     gap: calc(min(2em, 5vw));
     flex-wrap: wrap;
     justify-content: space-around;
+  }
+
+  @media (max-width: 1100px) {
+    ul li {
+      padding: 1.3em !important;
+    }
   }
 }
