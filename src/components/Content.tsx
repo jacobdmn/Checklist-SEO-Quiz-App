@@ -87,6 +87,7 @@ const Content = ({ checklist }: { checklist: any }) => {
 
   useEffect(() => {
     setCurrentQuestion(0);
+    setCheckedAnswersPerQuestion([]);
     setShowResult(false);
   }, [pathname]);
 
