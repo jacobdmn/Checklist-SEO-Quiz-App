@@ -77,8 +77,8 @@ const Content = ({ checklist }: { checklist: any }) => {
       return;
     }
 
+    setCurrentQuestion((prev) => prev + 1);
     setTimeout(() => {
-      setCurrentQuestion((prev) => prev + 1);
       setHidden(false);
     }, 500);
     setCheckedAnswersPerQuestion([]);
@@ -171,7 +171,8 @@ const Content = ({ checklist }: { checklist: any }) => {
                     {String.fromCharCode(65 + currentQuestion)}
                   </span>
                   <span className='text kinda-title'>
-                    {checklist.questions[currentQuestion].questionTitle}
+                    {currentQuestion <= checklist.questions.length - 1 &&
+                      checklist.questions[currentQuestion].questionTitle}
                   </span>
                 </h3>
                 <div
@@ -196,59 +197,60 @@ const Content = ({ checklist }: { checklist: any }) => {
                 </div>
               </div>
               <List className={hidden ? `options hidden` : `options`} dense>
-                {checklist.questions[currentQuestion].options.map(
-                  (option: any, index: number) => (
-                    <ListItem
-                      className='option'
-                      key={`${
-                        option.optionTitle
-                      }${new Date().getMilliseconds()}`}
-                      onClick={handleToggle(index)}
-                      secondaryAction={
-                        <Checkbox
-                          edge='end'
-                          onChange={handleToggle(index)}
-                          checked={
-                            checkedAnswersPerQuestion.indexOf(index) !== -1
-                          }
-                          inputProps={{
-                            "aria-labelledby": option.optionTitle,
-                          }}
-                          sx={{
-                            transform: "scale(1.5)",
-                          }}
-                        />
-                      }
-                      disablePadding>
-                      <ListItemButton>
-                        <div>
-                          <h3>
-                            <span className='option_icon'>
-                              <img
-                                src='https://cdn1.iconfinder.com/data/icons/powerful-seo-icon-set/512/rocket_1__.png'
-                                alt=''
-                              />
-                            </span>
-                            <span className='option_text'>
-                              {option.optionTitle}
-                            </span>
-                          </h3>
-                          {option.optionDescription.length > 0 && (
-                            <p className='option_details'>
-                              {option.optionDescription.map(
-                                (optionDescriptionNode: string) => (
-                                  <span key={optionDescriptionNode}>
-                                    {optionDescriptionNode}
-                                  </span>
-                                )
-                              )}
-                            </p>
-                          )}
-                        </div>
-                      </ListItemButton>
-                    </ListItem>
-                  )
-                )}
+                {currentQuestion <= checklist.questions.length - 1 &&
+                  checklist.questions[currentQuestion].options.map(
+                    (option: any, index: number) => (
+                      <ListItem
+                        className='option'
+                        key={`${
+                          option.optionTitle
+                        }${new Date().getMilliseconds()}`}
+                        onClick={handleToggle(index)}
+                        secondaryAction={
+                          <Checkbox
+                            edge='end'
+                            onChange={handleToggle(index)}
+                            checked={
+                              checkedAnswersPerQuestion.indexOf(index) !== -1
+                            }
+                            inputProps={{
+                              "aria-labelledby": option.optionTitle,
+                            }}
+                            sx={{
+                              transform: "scale(1.5)",
+                            }}
+                          />
+                        }
+                        disablePadding>
+                        <ListItemButton>
+                          <div>
+                            <h3>
+                              <span className='option_icon'>
+                                <img
+                                  src='https://cdn1.iconfinder.com/data/icons/powerful-seo-icon-set/512/rocket_1__.png'
+                                  alt=''
+                                />
+                              </span>
+                              <span className='option_text'>
+                                {option.optionTitle}
+                              </span>
+                            </h3>
+                            {option.optionDescription.length > 0 && (
+                              <p className='option_details'>
+                                {option.optionDescription.map(
+                                  (optionDescriptionNode: string) => (
+                                    <span key={optionDescriptionNode}>
+                                      {optionDescriptionNode}
+                                    </span>
+                                  )
+                                )}
+                              </p>
+                            )}
+                          </div>
+                        </ListItemButton>
+                      </ListItem>
+                    )
+                  )}
               </List>
             </>
           )}
