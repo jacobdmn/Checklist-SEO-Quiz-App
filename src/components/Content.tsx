@@ -61,8 +61,6 @@ const Content = ({ checklist }: { checklist: any }) => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
-    setHidden(true);
-
     answers[currentQuestion] = [...checkedAnswersPerQuestion];
     setAnswers(answers);
 
