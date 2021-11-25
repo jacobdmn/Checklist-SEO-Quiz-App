@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@300;400;500;600;900&display=swap");
 $theme: #ffffff;
 $theme-font: rgb(0, 0, 0);
 $box-shadow: 2px 0 2px 3px rgb(206, 206, 206) !important;
@@ -12,9 +12,6 @@ $pink: rgba(206, 68, 183, 0.6);
 $green: rgba(23, 107, 51, 0.6);
 $yellow: rgba(129, 131, 33, 0.6);
 $font-title: "M PLUS 2", sans-serif;
-// $main-font-color: rgb(111,
-// 90,
-// 70);
 
 $linear-blue: linear-gradient(98deg, #004cd0 50%, #4c82e1);
 
@@ -48,7 +45,12 @@ a {
   cursor: pointer;
   transition: all 0.15s ease-in-out;
   &.Selected {
-    border-color: #cd1c6c;
+    &,
+    &:hover {
+      border-color: #cd1c6c;
+      color: white !important;
+      background: #cd1c6c;
+    }
   }
   &:hover {
     background-color: rgba(205, 28, 108, 0.125);
@@ -56,9 +58,6 @@ a {
   &:visited {
     color: black;
   }
-}
-
-a {
 }
 
 button {
