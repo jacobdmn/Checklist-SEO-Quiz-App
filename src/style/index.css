@@ -307,8 +307,8 @@ body {
 }
 
 .checklist__container .checklist_form_QA .checklist__questions .form_header h3.questionTitle .icon {
-  width: 2em;
-  height: 2em;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   background: pink;
   display: -ms-grid;
