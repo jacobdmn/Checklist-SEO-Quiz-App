@@ -446,6 +446,7 @@ body {
 
 .checklist__container .checklist_form_QA .checklist__questions .options .option h3 span.option_text {
   font-weight: 400;
+  font-size: 1.2em;
 }
 
 .checklist__container .checklist_form_QA .checklist__questions .options .option p.option_details {
