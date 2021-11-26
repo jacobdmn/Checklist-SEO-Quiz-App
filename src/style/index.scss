@@ -162,7 +162,7 @@ body {
         top: calc(50% - 30px);
         background: linear-gradient(90deg, #ffffff00 20%, #ffffff30 100%);
         border-radius: 30px;
-        left: -10px;
+        left: calc(min(-10px, -1em));
       }
 
       .counter {
@@ -205,8 +205,6 @@ body {
     padding-bottom: 2em;
     .checklist__questions {
       flex: 1;
-      overflow-y: scroll;
-      scrollbar-color: white;
       display: flex;
       flex-direction: column;
       gap: 1em;
@@ -318,10 +316,10 @@ body {
         .YesNo {
           display: flex;
           flex-direction: row;
-          gap: 3em;
+          gap: 60px;
           justify-content: flex-end;
           font-size: 1.4em;
-          padding-right: 1.3em;
+          padding-right: 17px;
           border-top: 1px solid rgba(0, 0, 0, 0.1);
           padding-top: 1em;
         }
@@ -333,18 +331,30 @@ body {
           transition: all 0.2s ease-in-out;
           cursor: default;
 
-          // input,
-          // svg {
-          //   cursor: pointer;
-          // }
-
-          div:first-child {
-            padding-block: 1em;
-            display: flex;
-            justify-content: space-between;
-            gap: 3em;
-            flex: 1;
-            cursor: default;
+          &:hover {
+            background-color: $theme;
+          }
+          .optionWrapper {
+            div:first-child {
+              padding-block: 1em;
+              display: flex;
+              justify-content: space-between;
+              gap: 3em;
+              flex: 1;
+              cursor: default;
+              h3 {
+                display: flex;
+                align-items: center;
+                gap: 1em;
+                span.option_icon {
+                  img {
+                    height: 100%;
+                    width: 50px;
+                    vertical-align: middle;
+                  }
+                }
+              }
+            }
             .actions {
               display: flex;
               justify-content: center;
@@ -352,40 +362,40 @@ body {
               align-items: center;
               width: 100px;
             }
-          }
-          &:hover {
-            background-color: $theme;
-          }
-          h3 {
-            display: flex;
-            align-items: center;
-            gap: 1em;
-            span.option_icon {
-              img {
-                height: 100%;
-                width: 50px;
-                vertical-align: middle;
-              }
-            }
+            padding-block: 1.3;
+            gap: 4em;
+
             span.option_text {
               font-weight: 400;
               font-size: 1.2em;
             }
-          }
-          p.option_details {
-            color: lighten($color: $theme-font, $amount: 100%);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1em;
-            padding-left: 3em;
-            margin: 0.5em;
-            span {
-              font-weight: 500;
-              padding: 1em 1.3em;
-              border-radius: 10px;
-              background: black !important;
-              font-size: 1.2em;
+
+            p.option_details {
+              color: lighten($color: $theme-font, $amount: 100%);
+              display: flex;
+              flex-wrap: wrap;
+              gap: 1em;
+              padding-left: 3em;
+              margin: 0.5em;
+              span {
+                font-weight: 500;
+                padding: 1em 1.3em;
+                border-radius: 10px;
+                background: black !important;
+                font-size: 1.2em;
+              }
             }
+          }
+        }
+        @media (max-width: 600px) {
+          .YesNo,
+          .option_icon {
+            display: none !important;
+          }
+
+          .optionWrapper {
+            flex-direction: column !important;
+            gap: 0 !important;
           }
         }
       }

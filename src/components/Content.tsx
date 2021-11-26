@@ -70,8 +70,11 @@ const Content = ({ checklist }: { checklist: any }) => {
     checkedAnswersPerQuestion[QuestionIndex] = isUsed;
     setCheckedAnswersPerQuestion(checkedAnswersPerQuestion);
 
-    if (checklist.questions[currentQuestion].options.length === 1)
-      handleSubmit();
+    if (checklist.questions[currentQuestion].options.length === 1) {
+      setTimeout(() => {
+        handleSubmit();
+      }, 200);
+    }
 
     console.log("after: " + checkedAnswersPerQuestion);
     console.log(checkedAnswersPerQuestion);
@@ -234,8 +237,7 @@ const Content = ({ checklist }: { checklist: any }) => {
                           </span>
                         </span>
 
-                        <ListItemButton
-                          sx={{ paddingBlock: "1.3em", gap: "4em" }}>
+                        <ListItemButton className='optionWrapper'>
                           <div>
                             <h3>
                               <span className='option_text'>
