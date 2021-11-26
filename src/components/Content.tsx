@@ -44,6 +44,11 @@ const Content = ({ checklist }: { checklist: any }) => {
   /// show the result
   const [showResult, setShowResult] = useState(false);
 
+  /// hide "Next" button when there is only one choice, because the submit action will happen automatically after choosing
+  const [hideNext, setHideNext] = useState(
+    checklist.questions[0].options.length === 1 ? true : false
+  );
+
   /// to store all answers
   const [answers, setAnswers] = useState<any[]>([]);
 
@@ -70,10 +75,11 @@ const Content = ({ checklist }: { checklist: any }) => {
     checkedAnswersPerQuestion[QuestionIndex] = isUsed;
     setCheckedAnswersPerQuestion(checkedAnswersPerQuestion);
 
+    /// hide next button + show it only in the last question
     if (checklist.questions[currentQuestion].options.length === 1) {
       setTimeout(() => {
         handleSubmit();
-      }, 200);
+      }, 300);
     }
 
     console.log("after: " + checkedAnswersPerQuestion);
@@ -95,8 +101,15 @@ const Content = ({ checklist }: { checklist: any }) => {
     }
 
     setCurrentQuestion((prev) => prev + 1);
-    setTimeout(() => {}, 500);
     setCheckedAnswersPerQuestion([]);
+
+    checklist.questions[currentQuestion].options.length === 1
+      ? setHideNext(true)
+      : setHideNext(false);
+
+    // currentQuestion === checklist.questions.length - 2
+    //   ? setHideNext(false)
+    //   : setHideNext(false);
   };
 
   const handleComeBack = () => {
@@ -112,8 +125,10 @@ const Content = ({ checklist }: { checklist: any }) => {
     setCurrentQuestion(0);
     setCheckedAnswersPerQuestion([]);
     setShowResult(false);
+    setHideNext(checklist.questions[0].options.length === 1 ? true : false);
   }, [pathname]);
 
+  /// calculate options number, to make the score calculation
   let numberOfAllOptions = 0;
   checklist.questions.forEach((qst: any) => {
     numberOfAllOptions += qst.options.length;
@@ -199,7 +214,11 @@ const Content = ({ checklist }: { checklist: any }) => {
                   onClick={handleComeBack}>
                   <b>BACK</b>
                 </div>
-                <div className='submit__container' onClick={handleSubmit}>
+                <div
+                  className={
+                    hideNext ? "submit__container hidden" : "submit__container"
+                  }
+                  onClick={handleSubmit}>
                   <b>
                     {currentQuestion === checklist.questions.length - 1
                       ? "FINISH"
@@ -211,14 +230,6 @@ const Content = ({ checklist }: { checklist: any }) => {
                 </div>
               </div>
               <List className='options' dense>
-                <div className='YesNo'>
-                  <div>
-                    <DoneIcon color='success' />
-                  </div>
-                  <div>
-                    <CloseIcon color='warning' />
-                  </div>
-                </div>
                 {currentQuestion <= checklist.questions.length - 1 &&
                   checklist.questions[currentQuestion].options.map(
                     (option: any, index: number) => (
@@ -265,10 +276,31 @@ const Content = ({ checklist }: { checklist: any }) => {
                               }}>
                               <Radio
                                 {...controlProps(true, index)}
-                                color='success'
+                                icon={<DoneIcon />}
+                                checkedIcon={
+                                  <DoneIcon
+                                    sx={{
+                                      transform: "scale(1.3)",
+                                      border: "1px solid currentColor",
+                                      borderRadius: "50%",
+                                    }}
+                                    color='success'
+                                  />
+                                }
                               />
                               <Radio
                                 {...controlProps(false, index)}
+                                icon={<CloseIcon />}
+                                checkedIcon={
+                                  <CloseIcon
+                                    sx={{
+                                      transform: "scale(1.3)",
+                                      borderRadius: "50%",
+                                      color: pink[800],
+                                      border: "1px solid currentColor",
+                                    }}
+                                  />
+                                }
                                 sx={{
                                   transform: "scale(1.5)",
                                   color: pink[800],

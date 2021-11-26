@@ -113,7 +113,7 @@ body {
   transition: all 0.5s ease-in-out;
   opacity: 0 !important;
 }
-.hidden-display {
+.hidden-display * {
   display: none !important;
 }
 
@@ -261,7 +261,7 @@ body {
           .text {
             color: #1e00ff;
             padding: 1em;
-            font-size: 1.2em;
+            font-size: 1.4em;
           }
 
           @media (max-width: 500px) {
@@ -276,8 +276,11 @@ body {
           }
         }
         .submit__container {
-          // border: 4px solid $green-light;
           margin-left: 1em;
+
+          &.hidden {
+            display: none;
+          }
         }
         .submit__container,
         .back__container {
@@ -313,17 +316,9 @@ body {
       }
 
       .options {
-        .YesNo {
-          display: flex;
-          flex-direction: row;
-          gap: 60px;
-          justify-content: flex-end;
-          font-size: 1.4em;
-          padding-right: 17px;
+        .option {
           border-top: 1px solid rgba(0, 0, 0, 0.1);
           padding-top: 1em;
-        }
-        .option {
           display: flex;
           gap: 2em;
           //   padding: 0.5em 1em;
@@ -335,6 +330,8 @@ body {
             background-color: $theme;
           }
           .optionWrapper {
+            padding-block: 1.3em;
+            gap: 4em;
             div:first-child {
               padding-block: 1em;
               display: flex;
@@ -362,8 +359,6 @@ body {
               align-items: center;
               width: 100px;
             }
-            padding-block: 1.3;
-            gap: 4em;
 
             span.option_text {
               font-weight: 400;
@@ -387,19 +382,23 @@ body {
             }
           }
         }
-        @media (max-width: 600px) {
-          .YesNo,
-          .option_icon {
-            display: none !important;
-          }
-
-          .optionWrapper {
-            flex-direction: column !important;
-            gap: 0 !important;
-          }
-        }
       }
     }
+  }
+}
+
+@media (max-width: 600px) {
+  .YesNo,
+  .option_icon {
+    display: none !important;
+  }
+
+  .form_header {
+    gap: 0 !important;
+  }
+  .optionWrapper {
+    flex-direction: column !important;
+    gap: 0 !important;
   }
 }
 
