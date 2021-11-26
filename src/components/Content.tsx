@@ -15,6 +15,9 @@ import TextField from "@mui/material/TextField";
 import { useLocation } from "react-router-dom";
 import { RadioGroup } from "@mui/material";
 
+import DoneIcon from "@mui/icons-material/Done";
+import CloseIcon from "@mui/icons-material/Close";
+
 function LinearProgressWithLabel(
   props: LinearProgressProps & { value: number }
 ) {
@@ -48,8 +51,35 @@ const Content = ({ checklist }: { checklist: any }) => {
     boolean[]
   >([]);
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
+  const controlProps = (isUsed: boolean, index: number) => ({
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+      handleChangeChoice(e, index, isUsed),
+    value: `Q${index}_${isUsed}`,
+    name: `Q${index}_${isUsed}`,
+    inputProps: { "aria-label": `Q${index}_${isUsed}` },
+    sx: { transform: "scale(1.5)" },
+  });
+
+  const handleChangeChoice = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    QuestionIndex: number,
+    isUsed: boolean
+  ) => {
+    console.log("before: " + checkedAnswersPerQuestion);
+
+    checkedAnswersPerQuestion[QuestionIndex] = isUsed;
+    setCheckedAnswersPerQuestion(checkedAnswersPerQuestion);
+
+    if (checklist.questions[currentQuestion].options.length === 1)
+      handleSubmit();
+
+    console.log("after: " + checkedAnswersPerQuestion);
+    console.log(checkedAnswersPerQuestion);
+    console.log("------------------------");
+  };
+
+  const handleSubmit = (e?: any) => {
+    e && e.preventDefault();
 
     answers[currentQuestion] = [...checkedAnswersPerQuestion];
     setAnswers(answers);
@@ -84,30 +114,6 @@ const Content = ({ checklist }: { checklist: any }) => {
   let numberOfAllOptions = 0;
   checklist.questions.forEach((qst: any) => {
     numberOfAllOptions += qst.options.length;
-  });
-
-  const handleChangeChoice = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    QuestionIndex: number,
-    isUsed: boolean
-  ) => {
-    console.log("before: " + checkedAnswersPerQuestion);
-
-    checkedAnswersPerQuestion[QuestionIndex] = isUsed;
-    setCheckedAnswersPerQuestion(checkedAnswersPerQuestion);
-
-    console.log("after: " + checkedAnswersPerQuestion);
-    console.log(checkedAnswersPerQuestion);
-    console.log("------------------------");
-  };
-
-  const controlProps = (isUsed: boolean, index: number) => ({
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-      handleChangeChoice(e, index, isUsed),
-    value: `Q${index}_${isUsed}`,
-    name: `Q${index}_${isUsed}`,
-    inputProps: { "aria-label": `Q${index}_${isUsed}` },
-    sx: { transform: "scale(1.5)" },
   });
 
   return (
@@ -150,7 +156,8 @@ const Content = ({ checklist }: { checklist: any }) => {
               <h1>
                 Your score:{" "}
                 {`${(
-                  (answers.flat().length * 100) /
+                  (answers.flat().filter((x: boolean) => x === true).length *
+                    100) /
                   numberOfAllOptions
                 ).toFixed(0)}% 🚀`}
                 <br />
@@ -201,6 +208,14 @@ const Content = ({ checklist }: { checklist: any }) => {
                 </div>
               </div>
               <List className='options' dense>
+                <div className='YesNo'>
+                  <div>
+                    <DoneIcon color='success' />
+                  </div>
+                  <div>
+                    <CloseIcon color='warning' />
+                  </div>
+                </div>
                 {currentQuestion <= checklist.questions.length - 1 &&
                   checklist.questions[currentQuestion].options.map(
                     (option: any, index: number) => (
@@ -215,11 +230,12 @@ const Content = ({ checklist }: { checklist: any }) => {
                           CRO
                           <br />{" "}
                           <span style={{ whiteSpace: "nowrap" }}>
-                            Tip {index}
+                            Tip {index + 1}
                           </span>
                         </span>
 
-                        <ListItemButton sx={{ gap: "4em" }}>
+                        <ListItemButton
+                          sx={{ paddingBlock: "1.3em", gap: "4em" }}>
                           <div>
                             <h3>
                               <span className='option_text'>

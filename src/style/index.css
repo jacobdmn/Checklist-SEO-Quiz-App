@@ -397,9 +397,22 @@ body {
   font-weight: 900;
 }
 
-.checklist__container .checklist_form_QA .checklist__questions .options {
+.checklist__container .checklist_form_QA .checklist__questions .options .YesNo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 3em;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  font-size: 1.4em;
+  padding-right: 1.3em;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
-  padding-top: 2em;
+  padding-top: 1em;
 }
 
 .checklist__container .checklist_form_QA .checklist__questions .options .option {
