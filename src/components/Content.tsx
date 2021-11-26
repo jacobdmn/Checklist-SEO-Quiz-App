@@ -103,13 +103,11 @@ const Content = ({ checklist }: { checklist: any }) => {
     setCurrentQuestion((prev) => prev + 1);
     setCheckedAnswersPerQuestion([]);
 
-    checklist.questions[currentQuestion].options.length === 1
-      ? setHideNext(true)
-      : setHideNext(false);
-
-    // currentQuestion === checklist.questions.length - 2
-    //   ? setHideNext(false)
-    //   : setHideNext(false);
+    setHideNext(
+      checklist.questions[currentQuestion + 1].options.length === 1
+        ? true
+        : false
+    );
   };
 
   const handleComeBack = () => {

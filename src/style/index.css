@@ -419,6 +419,9 @@ body {
 .checklist__container .checklist_form_QA .checklist__questions .options .option .optionWrapper {
   padding-block: 1.3em;
   gap: 4em;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
 .checklist__container .checklist_form_QA .checklist__questions .options .option .optionWrapper div:first-child {
