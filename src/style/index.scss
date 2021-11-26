@@ -315,6 +315,16 @@ body {
         }
       }
 
+      .YesNo {
+        display: flex;
+        flex-direction: row;
+        gap: 60px;
+        justify-content: flex-end;
+        font-size: 1.4em;
+        padding-right: 17px;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        padding-top: 1em;
+      }
       .options {
         .option {
           border-top: 1px solid rgba(0, 0, 0, 0.1);

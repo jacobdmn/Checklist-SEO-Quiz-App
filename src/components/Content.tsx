@@ -228,6 +228,14 @@ const Content = ({ checklist }: { checklist: any }) => {
                 </div>
               </div>
               <List className='options' dense>
+                <div className='YesNo'>
+                  <div>
+                    <DoneIcon color='success' />
+                  </div>
+                  <div>
+                    <CloseIcon color='warning' />
+                  </div>
+                </div>
                 {currentQuestion <= checklist.questions.length - 1 &&
                   checklist.questions[currentQuestion].options.map(
                     (option: any, index: number) => (
@@ -274,31 +282,10 @@ const Content = ({ checklist }: { checklist: any }) => {
                               }}>
                               <Radio
                                 {...controlProps(true, index)}
-                                icon={<DoneIcon />}
-                                checkedIcon={
-                                  <DoneIcon
-                                    sx={{
-                                      transform: "scale(1.3)",
-                                      border: "1px solid currentColor",
-                                      borderRadius: "50%",
-                                    }}
-                                    color='success'
-                                  />
-                                }
+                                color='success'
                               />
                               <Radio
                                 {...controlProps(false, index)}
-                                icon={<CloseIcon />}
-                                checkedIcon={
-                                  <CloseIcon
-                                    sx={{
-                                      transform: "scale(1.3)",
-                                      borderRadius: "50%",
-                                      color: pink[800],
-                                      border: "1px solid currentColor",
-                                    }}
-                                  />
-                                }
                                 sx={{
                                   transform: "scale(1.5)",
                                   color: pink[800],
