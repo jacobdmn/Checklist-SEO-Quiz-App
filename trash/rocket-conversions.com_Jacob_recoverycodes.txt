@@ -1,9 +1,0 @@
-﻿Two-Factor Authentication Recovery Codes - https://rocket-conversions.com (Jacob)
-
-Each line of 16 letters and numbers is a single recovery code, with optional spaces for readability. To use a recovery code, after entering your username and password, enter the code like "1234 5678 90AB CDEF" at the 2FA prompt. If your site has a custom login prompt and does not show a 2FA prompt, you can use the single-step method by entering your password and the code together in the Password field, like "mypassword1234 5678 90AB CDEF". Your recovery codes are:
-
-837e 8469 4ace af1c
-1abc 0bd9 61d8 b295
-e71b d718 f89c 928b
-3acc ce0d 2830 ca55
-001b 4874 5043 e26a

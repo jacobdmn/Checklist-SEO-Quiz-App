@@ -1,12 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@300;400;500;600;900&display=swap");
 * {
   margin: 0;
   padding: 0;
   cursor: default;
   -webkit-box-sizing: border-box !important;
           box-sizing: border-box !important;
-  font-family: "Roboto", monospace !important;
+  font-family: "Poppins", monospace !important;
   font-weight: 300;
 }
 
@@ -46,7 +44,8 @@ a:visited {
 }
 
 button {
-  background-color: #497fe0;
+  background: linear-gradient(98deg, #1e00ff, #2eb6b2);
+  color: white;
   min-width: 35px !important;
   max-width: 35px !important;
   border-radius: 50%;
@@ -60,7 +59,6 @@ button {
   display: -ms-grid;
   display: grid;
   place-content: center;
-  color: white;
 }
 
 span {
@@ -75,7 +73,7 @@ input * {
 }
 
 .kinda-title {
-  font-family: "M PLUS 2", sans-serif;
+  font-family: "Poppins";
   font-weight: 400;
 }
 
@@ -152,7 +150,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background: linear-gradient(98deg, #004cd0 50%, #4c82e1);
+  background: linear-gradient(98deg, #1e00ff, #2eb6b2);
   color: white;
   border-radius: 15px;
   -webkit-box-shadow: 0px 10px 30px rgba(0, 76, 208, 0.1);
@@ -289,6 +287,9 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   gap: 2em;
@@ -306,17 +307,18 @@ body {
       -ms-flex-align: center;
           align-items: center;
   gap: 0.3em;
+  color: #2eb6b2;
 }
 
 .checklist__container .checklist_form_QA .checklist__questions .form_header h3.questionTitle .icon {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  background: pink;
+  background: linear-gradient(98deg, #1e00ff, #2eb6b2);
+  color: #ffffff;
   display: -ms-grid;
   display: grid;
   place-items: center;
-  color: black;
   position: relative;
   z-index: 1;
   font-size: 2em;
@@ -326,15 +328,9 @@ body {
 }
 
 .checklist__container .checklist_form_QA .checklist__questions .form_header h3.questionTitle .text {
-  border-radius: 5em;
-  background: linear-gradient(98deg, #004cd0 50%, #4c82e1);
+  color: #1e00ff;
   padding: 1em;
-  padding-left: 3em;
-  position: relative;
-  left: -2.5em;
-  color: #ffffff;
-  -webkit-box-shadow: 0 0 0.1em 0em #004cd0;
-          box-shadow: 0 0 0.1em 0em #004cd0;
+  font-size: 1.2em;
 }
 
 @media (max-width: 500px) {
@@ -349,7 +345,6 @@ body {
 }
 
 .checklist__container .checklist_form_QA .checklist__questions .form_header .submit__container {
-  border: 4px solid #497fe0;
   margin-left: 1em;
 }
 
@@ -366,7 +361,7 @@ body {
           align-items: center;
   -webkit-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
-  padding: 0.3em 0.6em;
+  padding: 0.5em 0.6em;
   border-radius: 5px;
 }
 
@@ -412,18 +407,39 @@ body {
   display: -ms-flexbox;
   display: flex;
   gap: 2em;
-  border-bottom: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d96e;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
-}
-
-.checklist__container .checklist_form_QA .checklist__questions .options .option,
-.checklist__container .checklist_form_QA .checklist__questions .options .option * {
-  cursor: pointer;
+  cursor: default;
 }
 
 .checklist__container .checklist_form_QA .checklist__questions .options .option div:first-child {
   padding-block: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 3em;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  cursor: default;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .options .option div:first-child .actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 2em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100px;
 }
 
 .checklist__container .checklist_form_QA .checklist__questions .options .option:hover {
@@ -437,7 +453,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 0.3em;
+  gap: 1em;
 }
 
 .checklist__container .checklist_form_QA .checklist__questions .options .option h3 span.option_icon img {

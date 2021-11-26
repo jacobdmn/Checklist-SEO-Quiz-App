@@ -1,203 +1,14 @@
-const checklists = [
-  {
-    title: "General Checklist",
-    description:
-      "Use these general conversion design recommendations to increase your conversion rate and revenue.",
-    questions: [
-      {
-        questionTitle: "Does your customer experience meet the following?",
-        options: [
-          {
-            optionTitle: "Mobile-Optimized Website",
-            optionDescription: [
-              "Mobile Responsive Layout",
-              "Easy To Read",
-              "Fast Page Load Speed",
-            ],
-          },
-          {
-            optionTitle:
-              "Clear Information Hierarchy (Most Important Info First)",
-            optionDescription: [],
-          },
-          {
-            optionTitle:
-              "Copy Structure: F-Pattern (use if heavy on text) vs Z-Pattern (light on text)",
-            optionDescription: [],
-          },
-        ],
-      },
-      {
-        questionTitle: "Does your content meet the following?",
-        options: [
-          {
-            optionTitle: "Messaging",
-            optionDescription: [
-              "Headline is unique, specific & meaningful",
-              "Communicate brand vision, story, values",
-              "Using product benefits & product features",
-              "Most important benefits have their own section",
-            ],
-          },
-          {
-            optionTitle: "Readability",
-            optionDescription: [
-              "Simple words",
-              "Short paragraphs",
-              "Bullet or number points instead of long text",
-            ],
-          },
-          {
-            optionTitle: "Imagery/ Video",
-            optionDescription: [
-              "Imagery communicates the benefits of your offer",
-              "Include offer explainer video",
-            ],
-          },
-          {
-            optionTitle:
-              "Consistency: Clear Brand Style Across Ads, Website & Landing Pages",
-            optionDescription: ["Same Fonts", "Same Colors", "Same Styles"],
-          },
-        ],
-      },
-      {
-        questionTitle: "Do you remove buying resistance with the following?",
-        options: [
-          {
-            optionTitle: "Use of guarantees, warranties, free returns",
-            optionDescription: [],
-          },
-          {
-            optionTitle:
-              "Option of multiple payment methods (PayPal, AfterPay, Credit Card etc.)",
-            optionDescription: [],
-          },
-          {
-            optionTitle: "Use of testimonials",
-            optionDescription: [
-              "Highlight key details in testimonials",
-              "Each testimonial has personal details",
-            ],
-          },
-        ],
-      },
-      {
-        questionTitle: "Have you designed for trust?",
-        options: [
-          {
-            optionTitle: "Trust Building Design Elements",
-            optionDescription: [],
-          },
-          {
-            optionTitle: "Key selling points represented by icons",
-            optionDescription: [],
-          },
-          {
-            optionTitle:
-              "Use Of Trust Badges (Payment Gateway, Delivery Service, Shopify Secure etc.)",
-            optionDescription: [],
-          },
-          {
-            optionTitle:
-              "Include logos (Desaturate) of 3rd party affiliations / media appearances",
-            optionDescription: [],
-          },
-          {
-            optionTitle: "Include number of users/ buyers (if large)",
-            optionDescription: [],
-          },
-          {
-            optionTitle: "Include awards, ratings, social shares",
-            optionDescription: [],
-          },
-        ],
-      },
-      {
-        questionTitle: "Do you optimize to drive action?",
-        options: [
-          {
-            optionTitle: "Call To Action",
-            optionDescription: [
-              "Clear call to action",
-              "Boldest color for CTA buttons",
-              "Twice the size & font weight of body text",
-              "Directional cues like eye gaze or arrows to CTA buttons",
-              "CTAs in their own clear space",
-              "CTAs are enticing to click",
-              "CTA after each content section",
-            ],
-          },
-          {
-            optionTitle: "Create Urgency / Scarcity",
-            optionDescription: [
-              "Timer",
-              "Coupons",
-              "Low stock alert / How many people currently have in cart",
-              "Exit intent pop-up with incentive in exchange for email",
-            ],
-          },
-          {
-            optionTitle: "Lead Generation",
-            optionDescription: [
-              "Use multi-step forms (if lots of info needed)",
-              "Share why data is needed",
-              "Explain data privacy",
-            ],
-          },
-        ],
-      },
-      {
-        questionTitle: "Do you have an optimized offer?",
-        options: [
-          {
-            optionTitle: "Catchy offer name",
-            optionDescription: [],
-          },
-          {
-            optionTitle: "Product Photography",
-            optionDescription: [
-              "High-quality studio shots",
-              "Show products from various angles",
-              "Capture important Product Elements",
-              "Show How Your Customers Use Your Product",
-              "Reveal Facts Through Graphic Edits",
-            ],
-          },
-          {
-            optionTitle: "Product Description",
-            optionDescription: [
-              "Explain Who It’s For",
-              "Why To Use It",
-              "Provide Full Specifications (Sizing, Dimensions, Materials etc.)",
-              "Product Use and Care Guidelines",
-            ],
-          },
-          {
-            optionTitle: "Unique Product Add-Ons",
-            optionDescription: [],
-          },
-          {
-            optionTitle: "Easy Shipping & Return Policy",
-            optionDescription: [],
-          },
-          {
-            optionTitle: "Upsells, Crossells, Downsells",
-            optionDescription: [
-              "Product Bundling",
-              "In-Cart Upsells",
-              "Post Purchase One-Click Upsells",
-            ],
-          },
-          {
-            optionTitle:
-              "Wingman Method (Increase Perceived Value By Strategic Pricing Of Other Products)",
-            optionDescription: [],
-          },
-        ],
-      },
-    ],
-  },
+const checklists: {
+  title: string;
+  description: string;
+  questions: {
+    questionTitle: string;
+    options: {
+      optionTitle: string;
+      optionDescription: string[] | null[];
+    }[];
+  }[];
+}[] = [
   {
     title: "Landing Pages",
     description:
@@ -1205,3 +1016,203 @@ A very effective way of persuading users to make a purchase right now is by crea
   },
 ];
 export default checklists;
+
+// {
+//     title: "General Checklist",
+//     description:
+//       "Use these general conversion design recommendations to increase your conversion rate and revenue.",
+//     questions: [
+//       {
+//         questionTitle: "Does your customer experience meet the following?",
+//         options: [
+//           {
+//             optionTitle: "Mobile-Optimized Website",
+//             optionDescription: [
+//               "Mobile Responsive Layout",
+//               "Easy To Read",
+//               "Fast Page Load Speed",
+//             ],
+//           },
+//           {
+//             optionTitle:
+//               "Clear Information Hierarchy (Most Important Info First)",
+//             optionDescription: [],
+//           },
+//           {
+//             optionTitle:
+//               "Copy Structure: F-Pattern (use if heavy on text) vs Z-Pattern (light on text)",
+//             optionDescription: [],
+//           },
+//         ],
+//       },
+//       {
+//         questionTitle: "Does your content meet the following?",
+//         options: [
+//           {
+//             optionTitle: "Messaging",
+//             optionDescription: [
+//               "Headline is unique, specific & meaningful",
+//               "Communicate brand vision, story, values",
+//               "Using product benefits & product features",
+//               "Most important benefits have their own section",
+//             ],
+//           },
+//           {
+//             optionTitle: "Readability",
+//             optionDescription: [
+//               "Simple words",
+//               "Short paragraphs",
+//               "Bullet or number points instead of long text",
+//             ],
+//           },
+//           {
+//             optionTitle: "Imagery/ Video",
+//             optionDescription: [
+//               "Imagery communicates the benefits of your offer",
+//               "Include offer explainer video",
+//             ],
+//           },
+//           {
+//             optionTitle:
+//               "Consistency: Clear Brand Style Across Ads, Website & Landing Pages",
+//             optionDescription: ["Same Fonts", "Same Colors", "Same Styles"],
+//           },
+//         ],
+//       },
+//       {
+//         questionTitle: "Do you remove buying resistance with the following?",
+//         options: [
+//           {
+//             optionTitle: "Use of guarantees, warranties, free returns",
+//             optionDescription: [],
+//           },
+//           {
+//             optionTitle:
+//               "Option of multiple payment methods (PayPal, AfterPay, Credit Card etc.)",
+//             optionDescription: [],
+//           },
+//           {
+//             optionTitle: "Use of testimonials",
+//             optionDescription: [
+//               "Highlight key details in testimonials",
+//               "Each testimonial has personal details",
+//             ],
+//           },
+//         ],
+//       },
+//       {
+//         questionTitle: "Have you designed for trust?",
+//         options: [
+//           {
+//             optionTitle: "Trust Building Design Elements",
+//             optionDescription: [],
+//           },
+//           {
+//             optionTitle: "Key selling points represented by icons",
+//             optionDescription: [],
+//           },
+//           {
+//             optionTitle:
+//               "Use Of Trust Badges (Payment Gateway, Delivery Service, Shopify Secure etc.)",
+//             optionDescription: [],
+//           },
+//           {
+//             optionTitle:
+//               "Include logos (Desaturate) of 3rd party affiliations / media appearances",
+//             optionDescription: [],
+//           },
+//           {
+//             optionTitle: "Include number of users/ buyers (if large)",
+//             optionDescription: [],
+//           },
+//           {
+//             optionTitle: "Include awards, ratings, social shares",
+//             optionDescription: [],
+//           },
+//         ],
+//       },
+//       {
+//         questionTitle: "Do you optimize to drive action?",
+//         options: [
+//           {
+//             optionTitle: "Call To Action",
+//             optionDescription: [
+//               "Clear call to action",
+//               "Boldest color for CTA buttons",
+//               "Twice the size & font weight of body text",
+//               "Directional cues like eye gaze or arrows to CTA buttons",
+//               "CTAs in their own clear space",
+//               "CTAs are enticing to click",
+//               "CTA after each content section",
+//             ],
+//           },
+//           {
+//             optionTitle: "Create Urgency / Scarcity",
+//             optionDescription: [
+//               "Timer",
+//               "Coupons",
+//               "Low stock alert / How many people currently have in cart",
+//               "Exit intent pop-up with incentive in exchange for email",
+//             ],
+//           },
+//           {
+//             optionTitle: "Lead Generation",
+//             optionDescription: [
+//               "Use multi-step forms (if lots of info needed)",
+//               "Share why data is needed",
+//               "Explain data privacy",
+//             ],
+//           },
+//         ],
+//       },
+//       {
+//         questionTitle: "Do you have an optimized offer?",
+//         options: [
+//           {
+//             optionTitle: "Catchy offer name",
+//             optionDescription: [],
+//           },
+//           {
+//             optionTitle: "Product Photography",
+//             optionDescription: [
+//               "High-quality studio shots",
+//               "Show products from various angles",
+//               "Capture important Product Elements",
+//               "Show How Your Customers Use Your Product",
+//               "Reveal Facts Through Graphic Edits",
+//             ],
+//           },
+//           {
+//             optionTitle: "Product Description",
+//             optionDescription: [
+//               "Explain Who It’s For",
+//               "Why To Use It",
+//               "Provide Full Specifications (Sizing, Dimensions, Materials etc.)",
+//               "Product Use and Care Guidelines",
+//             ],
+//           },
+//           {
+//             optionTitle: "Unique Product Add-Ons",
+//             optionDescription: [],
+//           },
+//           {
+//             optionTitle: "Easy Shipping & Return Policy",
+//             optionDescription: [],
+//           },
+//           {
+//             optionTitle: "Upsells, Crossells, Downsells",
+//             optionDescription: [
+//               "Product Bundling",
+//               "In-Cart Upsells",
+//               "Post Purchase One-Click Upsells",
+//             ],
+//           },
+//           {
+//             optionTitle:
+//               "Wingman Method (Increase Perceived Value By Strategic Pricing Of Other Products)",
+//             optionDescription: [],
+//           },
+//         ],
+//       },
+//     ],
+//   },

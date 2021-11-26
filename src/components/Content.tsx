@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import Checkbox from "@mui/material/Checkbox";
+import { pink } from "@mui/material/colors";
+import Radio from "@mui/material/Radio";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import LinearProgress, {
   LinearProgressProps,
@@ -12,6 +13,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
 import { useLocation } from "react-router-dom";
+import { RadioGroup } from "@mui/material";
 
 function LinearProgressWithLabel(
   props: LinearProgressProps & { value: number }
@@ -30,6 +32,9 @@ function LinearProgressWithLabel(
   );
 }
 
+const icon_question =
+  "https://rocket-conversions.com/storage/2020/09/cropped-Asset-4@2x-8-192x192.png";
+
 const Content = ({ checklist }: { checklist: any }) => {
   /// track the current question
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -40,23 +45,8 @@ const Content = ({ checklist }: { checklist: any }) => {
   const [answers, setAnswers] = useState<any[]>([]);
 
   const [checkedAnswersPerQuestion, setCheckedAnswersPerQuestion] = useState<
-    number[]
+    boolean[]
   >([]);
-
-  /// add checked node to checked list
-  const handleToggle = (indexOfOption: number) => () => {
-    console.log("before: " + checkedAnswersPerQuestion);
-    let tmp;
-    if (checkedAnswersPerQuestion.includes(indexOfOption)) {
-      tmp = checkedAnswersPerQuestion.filter(
-        (index: number) => index !== indexOfOption
-      );
-    } else {
-      tmp = [...checkedAnswersPerQuestion, indexOfOption];
-    }
-    setCheckedAnswersPerQuestion([...tmp]);
-    console.log("after: " + tmp);
-  };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -96,11 +86,37 @@ const Content = ({ checklist }: { checklist: any }) => {
     numberOfAllOptions += qst.options.length;
   });
 
+  const handleChangeChoice = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    QuestionIndex: number,
+    isUsed: boolean
+  ) => {
+    console.log("before: " + checkedAnswersPerQuestion);
+
+    checkedAnswersPerQuestion[QuestionIndex] = isUsed;
+    setCheckedAnswersPerQuestion(checkedAnswersPerQuestion);
+
+    console.log("after: " + checkedAnswersPerQuestion);
+    console.log(checkedAnswersPerQuestion);
+    console.log("------------------------");
+  };
+
+  const controlProps = (isUsed: boolean, index: number) => ({
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+      handleChangeChoice(e, index, isUsed),
+    value: `Q${index}_${isUsed}`,
+    name: `Q${index}_${isUsed}`,
+    inputProps: { "aria-label": `Q${index}_${isUsed}` },
+    sx: { transform: "scale(1.5)" },
+  });
+
   return (
     <div className='checklist__container'>
       <div className='progressBar_container'>
         <div className='progressBar_pages_counter'>
-          <div className='circle_gradient'></div>
+          <div className='circle_gradient'>
+            <img src={icon_question} alt='' width='100%' />
+          </div>
           <div className='counter'>
             Question {currentQuestion + 1} / {checklist.questions.length}
           </div>
@@ -158,9 +174,6 @@ const Content = ({ checklist }: { checklist: any }) => {
             <>
               <div className='form_header'>
                 <h3 className='questionTitle'>
-                  <span className='icon'>
-                    {String.fromCharCode(65 + currentQuestion)}
-                  </span>
                   <span className='text kinda-title'>
                     {currentQuestion <= checklist.questions.length - 1 &&
                       checklist.questions[currentQuestion].questionTitle}
@@ -196,32 +209,19 @@ const Content = ({ checklist }: { checklist: any }) => {
                         key={`${
                           option.optionTitle
                         }${new Date().getMilliseconds()}`}
-                        onClick={handleToggle(index)}
-                        secondaryAction={
-                          <Checkbox
-                            edge='end'
-                            onChange={handleToggle(index)}
-                            checked={
-                              checkedAnswersPerQuestion.indexOf(index) !== -1
-                            }
-                            inputProps={{
-                              "aria-labelledby": option.optionTitle,
-                            }}
-                            sx={{
-                              transform: "scale(1.5)",
-                            }}
-                          />
-                        }
+                        // onClick={handleToggle(index)}
                         disablePadding>
-                        <ListItemButton>
+                        <span className='option_icon'>
+                          CRO
+                          <br />{" "}
+                          <span style={{ whiteSpace: "nowrap" }}>
+                            Tip {index}
+                          </span>
+                        </span>
+
+                        <ListItemButton sx={{ gap: "4em" }}>
                           <div>
                             <h3>
-                              <span className='option_icon'>
-                                <img
-                                  src='https://cdn1.iconfinder.com/data/icons/powerful-seo-icon-set/512/rocket_1__.png'
-                                  alt=''
-                                />
-                              </span>
                               <span className='option_text'>
                                 {option.optionTitle}
                               </span>
@@ -237,6 +237,29 @@ const Content = ({ checklist }: { checklist: any }) => {
                                 )}
                               </p>
                             )}
+                          </div>
+                          <div className='actions'>
+                            <RadioGroup
+                              sx={{
+                                flexDirection: "row",
+                                flexWrap: "nowrap",
+                                gap: 0,
+                              }}>
+                              <Radio
+                                {...controlProps(true, index)}
+                                color='success'
+                              />
+                              <Radio
+                                {...controlProps(false, index)}
+                                sx={{
+                                  transform: "scale(1.5)",
+                                  color: pink[800],
+                                  "&.Mui-checked": {
+                                    color: pink[600],
+                                  },
+                                }}
+                              />
+                            </RadioGroup>
                           </div>
                         </ListItemButton>
                       </ListItem>

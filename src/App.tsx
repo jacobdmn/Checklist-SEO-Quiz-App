@@ -13,22 +13,20 @@ function App() {
       <div className='App'>
         <Header />
         <Routes>
+          {/* <Route path='/' element={<Content checklist={checklists[0]} />} /> */}
+          {/* <Route path='/' element={<Navigate to='' />} /> */}
           <Route path='/' element={<Content checklist={checklists[0]} />} />
           <Route
-            path='/landing-pages'
+            path='/home-pages'
             element={<Content checklist={checklists[1]} />}
           />
           <Route
-            path='/home-pages'
+            path='/product-pages'
             element={<Content checklist={checklists[2]} />}
           />
           <Route
-            path='/product-pages'
-            element={<Content checklist={checklists[3]} />}
-          />
-          <Route
             path='/cart-pages'
-            element={<Content checklist={checklists[4]} />}
+            element={<Content checklist={checklists[3]} />}
           />
         </Routes>
       </div>

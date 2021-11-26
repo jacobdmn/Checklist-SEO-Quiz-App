@@ -1,19 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@300;400;500;600;900&display=swap");
+$font-family: "Poppins";
 $theme: #ffffff;
 $theme-font: rgb(0, 0, 0);
-$box-shadow: 2px 0 2px 3px rgb(206, 206, 206) !important;
-$box-shadow-componentBasics: 2px 0 10px -1px $theme !important;
 /// colors
-$blue: #004cd0;
-$blue-light: rgb(73, 127, 224);
+$blue: #1e00ff;
+$blue-light: #1e00ff;
+$green-light: #2eb6b2;
 
-$pink: rgba(206, 68, 183, 0.6);
-$green: rgba(23, 107, 51, 0.6);
-$yellow: rgba(129, 131, 33, 0.6);
-$font-title: "M PLUS 2", sans-serif;
-
-$linear-blue: linear-gradient(98deg, #004cd0 50%, #4c82e1);
+$linear-blue: linear-gradient(98deg, $blue, $green-light);
 
 * {
   margin: 0;
@@ -21,7 +14,7 @@ $linear-blue: linear-gradient(98deg, #004cd0 50%, #4c82e1);
   // font-weight: 100;
   cursor: default;
   box-sizing: border-box !important;
-  font-family: "Roboto", monospace !important;
+  font-family: $font-family, monospace !important;
   font-weight: 300;
 }
 
@@ -61,7 +54,8 @@ a {
 }
 
 button {
-  background-color: $blue-light;
+  background: $linear-blue;
+  color: white;
   min-width: 35px !important;
   max-width: 35px !important;
   border-radius: 50%;
@@ -73,7 +67,6 @@ button {
   font-size: 1.3em;
   display: grid;
   place-content: center;
-  color: white;
 }
 
 span {
@@ -87,7 +80,7 @@ input * {
 }
 
 .kinda-title {
-  font-family: $font-title;
+  font-family: $font-family;
   font-weight: 400;
 }
 
@@ -133,9 +126,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2em;
-  //   padding: calc(min(3em,3vw));
-  //   padding-top: calc(min(3em,3vw));
-  // box-shadow: $box-shadow-componentBasics;
   border-radius: 10px;
   place-content: center;
   .checklist__title {
@@ -246,6 +236,7 @@ body {
       .form_header {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         flex-wrap: wrap;
         gap: 2em;
         h3.questionTitle {
@@ -254,14 +245,15 @@ body {
           display: flex;
           align-items: center;
           gap: 0.3em;
+          color: $green-light;
           .icon {
             width: 70px;
             height: 70px;
             border-radius: 50%;
-            background: pink;
+            background: $linear-blue;
+            color: $theme;
             display: grid;
             place-items: center;
-            color: $theme-font;
             position: relative;
             z-index: 1;
             font-size: 2em;
@@ -269,14 +261,9 @@ body {
             box-shadow: 0 0 0.1em 0em pink;
           }
           .text {
-            border-radius: 5em;
-            background: $linear-blue;
+            color: #1e00ff;
             padding: 1em;
-            padding-left: 3em;
-            position: relative;
-            left: -2.5em;
-            color: $theme;
-            box-shadow: 0 0 0.1em 0em $blue;
+            font-size: 1.2em;
           }
 
           @media (max-width: 500px) {
@@ -291,7 +278,7 @@ body {
           }
         }
         .submit__container {
-          border: 4px solid $blue-light;
+          // border: 4px solid $green-light;
           margin-left: 1em;
         }
         .submit__container,
@@ -303,7 +290,7 @@ body {
           left: 100%;
           align-items: center;
           transition: all 0.2s ease-in;
-          padding: 0.3em 0.6em;
+          padding: 0.5em 0.6em;
           border-radius: 5px;
           &,
           * {
@@ -334,16 +321,29 @@ body {
           display: flex;
           gap: 2em;
           //   padding: 0.5em 1em;
-          border-bottom: 1px solid #d9d9d9;
+          border-bottom: 1px solid #d9d9d96e;
           transition: all 0.2s ease-in-out;
+          cursor: default;
 
-          &,
-          * {
-            cursor: pointer;
-          }
+          // input,
+          // svg {
+          //   cursor: pointer;
+          // }
 
           div:first-child {
             padding-block: 1em;
+            display: flex;
+            justify-content: space-between;
+            gap: 3em;
+            flex: 1;
+            cursor: default;
+            .actions {
+              display: flex;
+              justify-content: center;
+              gap: 2em;
+              align-items: center;
+              width: 100px;
+            }
           }
           &:hover {
             background-color: $theme;
@@ -351,7 +351,7 @@ body {
           h3 {
             display: flex;
             align-items: center;
-            gap: 0.3em;
+            gap: 1em;
             span.option_icon {
               img {
                 height: 100%;

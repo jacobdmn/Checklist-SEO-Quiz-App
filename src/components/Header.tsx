@@ -9,16 +9,16 @@ const Header = () => {
         revenue.
       </h1>
       <ul className='checklist__ul'>
-        <li>
+        {/* <li>
           <NavLink
             to='/'
             className={({ isActive }) => (isActive ? "Selected" : "")}>
             General Checklist
           </NavLink>
-        </li>
+        </li> */}
         <li>
           <NavLink
-            to='/landing-pages'
+            to='/'
             className={({ isActive }) => (isActive ? "Selected" : "")}>
             Landing Pages
           </NavLink>
