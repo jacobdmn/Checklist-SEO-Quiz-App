@@ -419,7 +419,6 @@ body {
 
 .checklist__container .checklist_form_QA .checklist__questions .options .option {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
-  padding-top: 1em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
