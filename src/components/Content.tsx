@@ -5,13 +5,11 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import { pink } from "@mui/material/colors";
 import Radio from "@mui/material/Radio";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import LinearProgress, {
   LinearProgressProps,
 } from "@mui/material/LinearProgress";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
 
 import { useLocation } from "react-router-dom";
 import { RadioGroup } from "@mui/material";
@@ -29,54 +27,41 @@ const rocket_img =
 const Content = ({ checklist }: { checklist: any }) => {
   /// track the current question
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  /// show the result
-  const [showResult, setShowResult] = useState(false);
 
-  /// hide "Next" button when there is only one choice, because the submit action will happen automatically after choosing
-  const [hideNext, setHideNext] = useState(
-    checklist.questions[0].options.length === 1 ? true : false
-  );
+  /// show the result when finish
+  const [showResult, setShowResult] = useState(false);
 
   /// to store all answers
   const [answers, setAnswers] = useState<any[]>([]);
 
+  /// store chosen answers for the current question, to move them then to answers[]
   const [checkedAnswersPerQuestion, setCheckedAnswersPerQuestion] = useState<
     any[]
   >([]);
 
+  /// props for the checkbox inputs
   const controlProps = (isUsed: boolean, index: number) => ({
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-      handleChangeChoice(e, index, isUsed),
+    onChange: () => handleChangeChoice(index, isUsed),
     value: `Q${index}_${isUsed}`,
     name: `Q${index}_${isUsed}`,
     inputProps: { "aria-label": `Q${index}_${isUsed}` },
     sx: { transform: "scale(1.5)" },
   });
 
-  const handleChangeChoice = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    QuestionIndex: number,
-    isUsed: boolean
-  ) => {
-    console.log("before: " + checkedAnswersPerQuestion);
-
+  /// what happens when the user toggles the checkbox
+  const handleChangeChoice = (QuestionIndex: number, isUsed: boolean) => {
     checkedAnswersPerQuestion[QuestionIndex] = isUsed;
     setCheckedAnswersPerQuestion(checkedAnswersPerQuestion);
-
-    /// hide next button + show it only in the last question
 
     setTimeout(() => {
       !checkedAnswersPerQuestion.includes(null) && handleSubmit();
     }, 500);
-
-    console.log("after: " + checkedAnswersPerQuestion);
-    console.log(checkedAnswersPerQuestion);
-    console.log("------------------------");
   };
 
   const handleSubmit = (e?: any) => {
     e && e.preventDefault();
 
+    /// every time before we go next, we copy all current answers to answers[]
     answers[currentQuestion] = [...checkedAnswersPerQuestion];
     setAnswers(answers);
 
@@ -91,30 +76,16 @@ const Content = ({ checklist }: { checklist: any }) => {
     setCurrentQuestion((prev) => prev + 1);
     setCheckedAnswersPerQuestion([]);
 
-    setHideNext(
-      checklist.questions[currentQuestion + 1].options.length === 1
-        ? true
-        : false
-    );
+    initializeCheckedAnswers(currentQuestion + 1);
+  };
 
+  const initializeCheckedAnswers = (question: number) => {
     let tmp_arr: any = [];
-    for (
-      let i = 0;
-      i <= checklist.questions[currentQuestion + 1].options.length - 1;
-      i++
-    )
+    for (let i = 0; i <= checklist.questions[question].options.length - 1; i++)
       tmp_arr[i] = null;
 
     setCheckedAnswersPerQuestion(tmp_arr);
-
     console.log(tmp_arr);
-  };
-
-  const handleComeBack = () => {
-    currentQuestion === checklist.questions.length - 1
-      ? setCurrentQuestion(0)
-      : setCurrentQuestion((prev) => prev - 1);
-    setShowResult(false);
   };
 
   const { pathname } = useLocation();
@@ -122,26 +93,13 @@ const Content = ({ checklist }: { checklist: any }) => {
   useEffect(() => {
     setAnswers([]);
     setCurrentQuestion(0);
-    // setShowResult(false);      /// this is the normal one
-    setShowResult(false); //// this is for test
-    setHideNext(checklist.questions[0].options.length === 1 ? true : false);
-
+    setShowResult(false);
     setCheckedAnswersPerQuestion([]);
 
-    let tmp_arr: any = [];
-    for (let i = 0; i <= checklist.questions[0].options.length - 1; i++)
-      tmp_arr[i] = null;
-
-    setCheckedAnswersPerQuestion(tmp_arr);
-
-    console.log(tmp_arr);
+    /// initialize the array with empty values, we need this when we have multiple choices answer,
+    // only when the array stops containing empty values, we go next
+    initializeCheckedAnswers(0);
   }, [pathname]);
-
-  /// calculate options number, to make the score calculation
-  let numberOfAllOptions = 0;
-  checklist.questions.forEach((qst: any) => {
-    numberOfAllOptions += qst.options.length;
-  });
 
   function LinearProgressWithLabel(
     props: LinearProgressProps & { value: number }
@@ -176,6 +134,12 @@ const Content = ({ checklist }: { checklist: any }) => {
     );
   }
 
+  /// calculate options number, to make the score calculation
+  let numberOfAllOptions = 0;
+  checklist.questions.forEach((qst: any) => {
+    numberOfAllOptions += qst.options.length;
+  });
+
   return (
     <div className='checklist__container'>
       {!showResult && (
@@ -197,10 +161,8 @@ const Content = ({ checklist }: { checklist: any }) => {
                 borderRadius: "1em",
                 height: "8px",
                 span: {
-                  // background: "#1BC8F1",   // blue sky
                   background: "#2eb6b2",
                   transition: "all 0.5s ease",
-                  // background: "#469acd",
                   height: "8px",
                   float: "left",
                   display: "block",
@@ -232,30 +194,6 @@ const Content = ({ checklist }: { checklist: any }) => {
                       checklist.questions[currentQuestion].questionTitle}
                   </span>
                 </h3>
-                {/* <div
-                  className={
-                    currentQuestion === 0 ||
-                    currentQuestion === checklist.questions.length - 1
-                      ? `back__container hidden-display`
-                      : `back__container`
-                  }
-                  onClick={handleComeBack}>
-                  <b>BACK</b>
-                </div>
-                <div
-                  className={
-                    hideNext ? "submit__container hidden" : "submit__container"
-                  }
-                  onClick={handleSubmit}>
-                  <b>
-                    {currentQuestion === checklist.questions.length - 1
-                      ? "FINISH"
-                      : "NEXT"}
-                  </b>
-                  <button type='submit' className='submit'>
-                    <ArrowForwardIcon />
-                  </button>
-                </div> */}
               </div>
               <List className='options' dense>
                 <div className='YesNo'>
@@ -271,9 +209,7 @@ const Content = ({ checklist }: { checklist: any }) => {
                     (option: any, index: number) => (
                       <ListItem
                         className='option'
-                        key={`${
-                          option.optionTitle
-                        }${new Date().getMilliseconds()}`}
+                        key={`${option}${new Date().getMilliseconds()}`}
                         // onClick={handleToggle(index)}
                         disablePadding>
                         <span className='option_icon'>
@@ -287,21 +223,8 @@ const Content = ({ checklist }: { checklist: any }) => {
                         <ListItemButton className='optionWrapper'>
                           <div>
                             <h3>
-                              <span className='option_text'>
-                                {option.optionTitle}
-                              </span>
+                              <span className='option_text'>{option}</span>
                             </h3>
-                            {option.optionDescription.length > 0 && (
-                              <p className='option_details'>
-                                {option.optionDescription.map(
-                                  (optionDescriptionNode: string) => (
-                                    <span key={optionDescriptionNode}>
-                                      {optionDescriptionNode}
-                                    </span>
-                                  )
-                                )}
-                              </p>
-                            )}
                           </div>
                           <div className='actions'>
                             <RadioGroup

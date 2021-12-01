@@ -4,7 +4,6 @@ import TextField from "@mui/material/TextField";
 import { styled } from "@mui/system";
 
 import Button from "@mui/material/Button";
-import SendIcon from "@mui/icons-material/Send";
 
 const TextFieldStyled = styled(TextField)({
   minWidth: "400px",

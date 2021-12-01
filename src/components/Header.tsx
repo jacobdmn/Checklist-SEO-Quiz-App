@@ -9,13 +9,6 @@ const Header = () => {
         revenue.
       </h1>
       <ul className='checklist__ul'>
-        {/* <li>
-          <NavLink
-            to='/'
-            className={({ isActive }) => (isActive ? "Selected" : "")}>
-            General Checklist
-          </NavLink>
-        </li> */}
         <li>
           <NavLink
             to='/'

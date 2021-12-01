@@ -317,7 +317,7 @@ body {
 .checklist__container .checklist_form_QA.showResult {
   background: linear-gradient(98deg, #1e00ff, #2eb6b2);
   color: white;
-  padding: calc(2em + 5vw);
+  padding: calc(min(calc(2em + 5vw), 4em));
   border-radius: 15px;
 }
 
