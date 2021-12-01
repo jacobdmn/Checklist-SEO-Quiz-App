@@ -56,15 +56,15 @@ a {
 button {
   background: $linear-blue;
   color: white;
-  min-width: 35px !important;
-  max-width: 35px !important;
-  border-radius: 50%;
-  height: 35px;
-  padding: 0;
-  margin: 0;
-  border: none;
+  // min-width: 35px !important;
+  // max-width: 35px !important;
+  border-radius: 15px;
+  height: 40px;
+  // padding: 0;
+  // margin: 0;
+  // border: none;
   box-shadow: none;
-  font-size: 1.3em;
+  font-size: 1em !important;
   display: grid;
   place-content: center;
 }
@@ -79,6 +79,55 @@ input * {
   cursor: text;
 }
 
+.animated_rocket {
+  width: 50px;
+  animation-name: animated_rocket;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+
+  transform: translate(-10px, 15px);
+  // animation: animated_rocket 5s linear 2s infinite forwards;
+  position: relative;
+
+  $left: 1.5px;
+  $top: 0.5px;
+
+  @keyframes animated_rocket {
+    0% {
+      left: 0;
+      top: 0;
+      transform: scale(1);
+    }
+    25% {
+      left: $left;
+      top: -1 * $top;
+    }
+    50% {
+      left: $left * 2;
+      top: 0;
+      transform: scale(0.97);
+    }
+    75% {
+      left: $left;
+      top: $top;
+    }
+    100% {
+      left: 0;
+      top: 0;
+      transform: scale(1);
+    }
+  }
+}
+.lunch_rocket_wow {
+  transform: rotate(345deg) !important;
+
+  //  position: absolute;
+  transition: all 0.2s ease-in-out;
+  // top: 24px;
+  // transform: translateY(-200px) rotate(345deg);
+  display: inline-block;
+}
 .kinda-title {
   font-family: $font-family;
   font-weight: 400;
@@ -156,13 +205,13 @@ body {
       .circle_gradient {
         content: "";
         position: absolute;
-        width: 60px;
-        height: 60px;
+        width: calc(min(60px, 15vw));
+        height: calc(min(60px, 15vw));
         z-index: 1;
         top: calc(50% - 30px);
-        background: linear-gradient(90deg, #ffffff00 20%, #ffffff30 100%);
+        box-shadow: 0 0 1em #ffffff00;
         border-radius: 30px;
-        left: calc(min(-10px, -1em));
+        left: calc(min(5px, 1vw));
       }
 
       .counter {
@@ -203,6 +252,13 @@ body {
     gap: 2em;
     // min-height: 70vh;
     padding-bottom: 2em;
+
+    &.showResult {
+      background: $linear-blue;
+      color: white;
+      padding: calc(2em + 5vw);
+      border-radius: 15px;
+    }
     .checklist__questions {
       flex: 1;
       display: flex;
@@ -210,15 +266,20 @@ body {
       gap: 1em;
       padding-inline: 1em;
 
-      h1 {
-        display: grid;
-        place-content: center;
-        flex: 1;
-        place-items: center;
+      h1,
+      h2 {
+        display: flex;
         gap: 1em;
         font-weight: bold;
-        text-align: center;
-        line-height: 1.6;
+        line-height: 2.6;
+        flex-wrap: wrap;
+
+        .form_cta {
+          display: grid;
+
+          gap: 1em;
+          margin-top: calc(min(3em, 3vw));
+        }
       }
       button.goBack {
         width: 150px;
@@ -329,7 +390,7 @@ body {
         .option {
           border-top: 1px solid rgba(0, 0, 0, 0.1);
           display: flex;
-          gap: 2em;
+          gap: 1em;
           //   padding: 0.5em 1em;
           border-bottom: 1px solid #d9d9d96e;
           transition: all 0.2s ease-in-out;
@@ -338,6 +399,21 @@ body {
           &:hover {
             background-color: $theme;
           }
+
+          span.option_icon {
+            background: #305cd9;
+            text-align: center;
+            color: white;
+            padding: 0.5em;
+            border-radius: 50%;
+            min-width: 60px;
+            max-width: 60px;
+            min-height: 60px;
+            max-height: 60px;
+            display: grid;
+            place-content: center;
+          }
+
           .optionWrapper {
             padding-block: 1.3em;
             gap: 4em;
@@ -349,18 +425,6 @@ body {
               gap: 3em;
               flex: 1;
               cursor: default;
-              h3 {
-                display: flex;
-                align-items: center;
-                gap: 1em;
-                span.option_icon {
-                  img {
-                    height: 100%;
-                    width: 50px;
-                    vertical-align: middle;
-                  }
-                }
-              }
             }
             .actions {
               display: flex;

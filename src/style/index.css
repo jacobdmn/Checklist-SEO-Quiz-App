@@ -46,16 +46,11 @@ a:visited {
 button {
   background: linear-gradient(98deg, #1e00ff, #2eb6b2);
   color: white;
-  min-width: 35px !important;
-  max-width: 35px !important;
-  border-radius: 50%;
-  height: 35px;
-  padding: 0;
-  margin: 0;
-  border: none;
+  border-radius: 15px;
+  height: 40px;
   -webkit-box-shadow: none;
           box-shadow: none;
-  font-size: 1.3em;
+  font-size: 1em !important;
   display: -ms-grid;
   display: grid;
   place-content: center;
@@ -70,6 +65,87 @@ span {
 input,
 input * {
   cursor: text;
+}
+
+.animated_rocket {
+  width: 50px;
+  -webkit-animation-name: animated_rocket;
+          animation-name: animated_rocket;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-transform: translate(-10px, 15px);
+          transform: translate(-10px, 15px);
+  position: relative;
+}
+
+@-webkit-keyframes animated_rocket {
+  0% {
+    left: 0;
+    top: 0;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  25% {
+    left: 1.5px;
+    top: -0.5px;
+  }
+  50% {
+    left: 3px;
+    top: 0;
+    -webkit-transform: scale(0.97);
+            transform: scale(0.97);
+  }
+  75% {
+    left: 1.5px;
+    top: 0.5px;
+  }
+  100% {
+    left: 0;
+    top: 0;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes animated_rocket {
+  0% {
+    left: 0;
+    top: 0;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  25% {
+    left: 1.5px;
+    top: -0.5px;
+  }
+  50% {
+    left: 3px;
+    top: 0;
+    -webkit-transform: scale(0.97);
+            transform: scale(0.97);
+  }
+  75% {
+    left: 1.5px;
+    top: 0.5px;
+  }
+  100% {
+    left: 0;
+    top: 0;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+.lunch_rocket_wow {
+  -webkit-transform: rotate(345deg) !important;
+          transform: rotate(345deg) !important;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
 }
 
 .kinda-title {
@@ -175,14 +251,14 @@ body {
 .checklist__container .progressBar_container .progressBar_pages_counter .circle_gradient {
   content: "";
   position: absolute;
-  width: 60px;
-  height: 60px;
+  width: calc(min(60px, 15vw));
+  height: calc(min(60px, 15vw));
   z-index: 1;
   top: calc(50% - 30px);
-  background: -webkit-gradient(linear, left top, right top, color-stop(20%, #ffffff00), to(#ffffff30));
-  background: linear-gradient(90deg, #ffffff00 20%, #ffffff30 100%);
+  -webkit-box-shadow: 0 0 1em #ffffff00;
+          box-shadow: 0 0 1em #ffffff00;
   border-radius: 30px;
-  left: calc(min(-10px, -1em));
+  left: calc(min(5px, 1vw));
 }
 
 .checklist__container .progressBar_container .progressBar_pages_counter .counter {
@@ -237,6 +313,13 @@ body {
   padding-bottom: 2em;
 }
 
+.checklist__container .checklist_form_QA.showResult {
+  background: linear-gradient(98deg, #1e00ff, #2eb6b2);
+  color: white;
+  padding: calc(2em + 5vw);
+  border-radius: 15px;
+}
+
 .checklist__container .checklist_form_QA .checklist__questions {
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -252,18 +335,24 @@ body {
   padding-inline: 1em;
 }
 
-.checklist__container .checklist_form_QA .checklist__questions h1 {
-  display: -ms-grid;
-  display: grid;
-  place-content: center;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  place-items: center;
+.checklist__container .checklist_form_QA .checklist__questions h1,
+.checklist__container .checklist_form_QA .checklist__questions h2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   gap: 1em;
   font-weight: bold;
-  text-align: center;
-  line-height: 1.6;
+  line-height: 2.6;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions h1 .form_cta,
+.checklist__container .checklist_form_QA .checklist__questions h2 .form_cta {
+  display: -ms-grid;
+  display: grid;
+  gap: 1em;
+  margin-top: calc(min(3em, 3vw));
 }
 
 .checklist__container .checklist_form_QA .checklist__questions button.goBack {
@@ -422,7 +511,7 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: 2em;
+  gap: 1em;
   border-bottom: 1px solid #d9d9d96e;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
@@ -431,6 +520,21 @@ body {
 
 .checklist__container .checklist_form_QA .checklist__questions .options .option:hover {
   background-color: #ffffff;
+}
+
+.checklist__container .checklist_form_QA .checklist__questions .options .option span.option_icon {
+  background: #305cd9;
+  text-align: center;
+  color: white;
+  padding: 0.5em;
+  border-radius: 50%;
+  min-width: 60px;
+  max-width: 60px;
+  min-height: 60px;
+  max-height: 60px;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
 }
 
 .checklist__container .checklist_form_QA .checklist__questions .options .option .optionWrapper {
@@ -454,22 +558,6 @@ body {
       -ms-flex: 1;
           flex: 1;
   cursor: default;
-}
-
-.checklist__container .checklist_form_QA .checklist__questions .options .option .optionWrapper div:first-child h3 {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 1em;
-}
-
-.checklist__container .checklist_form_QA .checklist__questions .options .option .optionWrapper div:first-child h3 span.option_icon img {
-  height: 100%;
-  width: 50px;
-  vertical-align: middle;
 }
 
 .checklist__container .checklist_form_QA .checklist__questions .options .option .optionWrapper .actions {
