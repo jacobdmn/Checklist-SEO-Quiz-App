@@ -235,6 +235,7 @@ body {
 
       & > div {
         flex: 1;
+        gap: calc(min(3em, 5vw));
         & > div:nth-child(2) {
           p {
             transition: all 0.5s ease;

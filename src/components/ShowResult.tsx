@@ -47,7 +47,7 @@ const ShowResult: React.FC<{
         <h2>
           Your score:{" "}
           {`${(
-            (answers.flat().filter((x: boolean) => x !== true).length * 100) /
+            (answers.flat().filter((x: boolean) => x === true).length * 100) /
             numberOfAllOptions
           ).toFixed(0)}% 🚀`}
           {/* star system here */}
