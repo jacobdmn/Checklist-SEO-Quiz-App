@@ -123,7 +123,7 @@ const Content = ({ checklist }: { checklist: any }) => {
     setAnswers([]);
     setCurrentQuestion(0);
     // setShowResult(false);      /// this is the normal one
-    setShowResult(true); //// this is for test
+    setShowResult(false); //// this is for test
     setHideNext(checklist.questions[0].options.length === 1 ? true : false);
 
     setCheckedAnswersPerQuestion([]);

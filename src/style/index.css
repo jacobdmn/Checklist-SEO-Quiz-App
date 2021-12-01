@@ -44,10 +44,10 @@ a:visited {
 }
 
 button {
-  background: linear-gradient(98deg, #1e00ff, #2eb6b2);
+  background: linear-gradient(350deg, #1e00ff8c, #2eb6b275);
   color: white;
   border-radius: 15px;
-  height: 40px;
+  height: 50px;
   -webkit-box-shadow: none;
           box-shadow: none;
   font-size: 1em !important;

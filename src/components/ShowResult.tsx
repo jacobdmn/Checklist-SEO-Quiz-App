@@ -7,7 +7,8 @@ import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 
 const TextFieldStyled = styled(TextField)({
-  width: "calc(min(500px, 95vw))",
+  minWidth: "400px",
+  maxWidth: "95vw",
   input: {
     height: "5em",
   },
@@ -22,15 +23,27 @@ const ShowResult: React.FC<{
   numberOfAllOptions: number;
 }> = ({ answers, numberOfAllOptions }) => {
   const [loading, setLoading] = React.useState(false);
-  const [emailSent, setEmailSent] = React.useState(true);
+  const [emailSent, setEmailSent] = React.useState(false);
 
   const handleSendCRO = (e?: any) => {
     e && e.preventDefault();
+
     setLoading(true);
+    setTimeout(() => {
+      setEmailSent(true);
+    }, 1500);
   };
   return !emailSent ? (
-    <h2>
-      <div>
+    <h2
+      style={{
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "4em",
+      }}>
+      <div
+        style={{
+          maxWidth: "400px",
+        }}>
         <h2>
           Your score:{" "}
           {`${(
@@ -44,7 +57,7 @@ const ShowResult: React.FC<{
         Enter your email to get the Audit + Results + List of action items
         <br />
       </div>
-      <form className='form_cta' onSubmit={handleSendCRO}>
+      <div className='form_cta'>
         <TextFieldStyled id='outlined-name' label='Name' variant='outlined' />
         <TextFieldStyled
           id='outlined-business-url'
@@ -60,42 +73,51 @@ const ShowResult: React.FC<{
           variant='outlined'
         />
 
-        <Button type='submit' disabled={loading} variant='contained'>
-          Send Me!
+        <Button onClick={handleSendCRO} disabled={loading} variant='contained'>
+          {loading ? "LOADING" : "Send Me!"}
         </Button>
-      </form>
+      </div>
     </h2>
   ) : (
     <>
-      <h2>
+      <h2 style={{ display: "grid", gap: "3em" }}>
         <div>
           <h2>Go check your email 🚀 </h2>
-          * we sent you score along with detailed guidelines and instructions on
-          how to optimise your page Read through the CRO audit, and send it to
-          your team <br />* Use the instructions and guidelines to optimise your
-          page for maximum conversions
+          <ul style={{ listStyle: "inside" }}>
+            <li>
+              we sent you score along with detailed guidelines and instructions
+              on how to optimise your page Read through the CRO audit, and send
+              it to your team
+            </li>
+            <li>
+              Use the instructions and guidelines to optimise your page for
+              maximum conversions
+            </li>
+          </ul>
         </div>
 
-        <h3
-          style={{
-            textAlign: "center",
-            lineHeight: 1.6,
-            marginTop: "1em",
-            borderTop: "1px solid currentColor",
-            paddingTop: ".5em",
-          }}>
-          Do you know anyone how could benefit from this CRO Audit tool? just
-          click below to send them this link
-        </h3>
-        <Button
-          variant='contained'
-          sx={{
-            width: "90vw",
-            marginInline: "auto",
-            maxWidth: "300px",
-          }}>
-          Share
-        </Button>
+        <div style={{ display: "grid", gap: "1em" }}>
+          <h5
+            style={{
+              textAlign: "center",
+              lineHeight: 1.6,
+              marginTop: "1em",
+              borderTop: "1px solid currentColor",
+              paddingTop: "2em",
+            }}>
+            Do you know anyone how could benefit from this CRO Audit tool? just
+            click below to send them this link
+          </h5>
+          <Button
+            variant='contained'
+            sx={{
+              width: "90vw",
+              marginInline: "auto",
+              maxWidth: "300px",
+            }}>
+            Share
+          </Button>
+        </div>
       </h2>
     </>
   );

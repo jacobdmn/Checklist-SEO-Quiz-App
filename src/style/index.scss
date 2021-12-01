@@ -7,6 +7,7 @@ $blue-light: #1e00ff;
 $green-light: #2eb6b2;
 
 $linear-blue: linear-gradient(98deg, $blue, $green-light);
+$linear-inverted: linear-gradient(350deg, #1e00ff8c, #2eb6b275);
 
 * {
   margin: 0;
@@ -54,12 +55,12 @@ a {
 }
 
 button {
-  background: $linear-blue;
+  background: $linear-inverted;
   color: white;
   // min-width: 35px !important;
   // max-width: 35px !important;
   border-radius: 15px;
-  height: 40px;
+  height: 50px;
   // padding: 0;
   // margin: 0;
   // border: none;
@@ -276,9 +277,9 @@ body {
 
         .form_cta {
           display: grid;
-
           gap: 1em;
           margin-top: calc(min(3em, 3vw));
+          flex: 1;
         }
       }
       button.goBack {
