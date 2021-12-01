@@ -23,7 +23,7 @@ const icon_question =
   "https://rocket-conversions.com/storage/2020/09/cropped-Asset-4@2x-8-192x192.png";
 
 const rocket_img =
-  "https://cdn2.iconfinder.com/data/icons/vivid/48/rocket-512.png";
+  "https://rocket-conversions.com/storage/2020/09/cropped-Asset-4@2x-8-192x192.png";
 // "https://cdn3.iconfinder.com/data/icons/space-255/64/Flying_Rocket-512.png";
 
 const Content = ({ checklist }: { checklist: any }) => {
@@ -198,7 +198,7 @@ const Content = ({ checklist }: { checklist: any }) => {
                 height: "8px",
                 span: {
                   // background: "#1BC8F1",   // blue sky
-                  background: "#fd8557",
+                  background: "#2eb6b2",
                   transition: "all 0.5s ease",
                   // background: "#469acd",
                   height: "8px",

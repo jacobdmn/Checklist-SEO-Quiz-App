@@ -290,7 +290,7 @@ body {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  gap: calc(min(3em, 5vw));
+  gap: calc(min(4em, 5vw));
 }
 
 .checklist__container .progressBar_container .progressBar_percentage_counter > div > div:nth-child(2) p {
