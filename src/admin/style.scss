@@ -19,8 +19,9 @@ ul {
   }
 }
 * {
-  border-color: white;
+  border-color: rgb(245, 197, 197);
   outline: white;
+  color: black !important;
 }
 li {
   margin-block: 1em !important;
@@ -38,7 +39,7 @@ h3 {
   margin-block: 1em !important;
 }
 input {
-  color: white !important;
+  color: rgb(0, 0, 0) !important;
 }
 body {
   color: rgb(0, 0, 0);
@@ -51,7 +52,7 @@ body {
   gap: 2em;
 
   .settings_container {
-    background: rgb(52, 124, 233);
+    // background: rgb(255, 255, 255);
     // padding: 3em;
     border-radius: 15px;
     box-shadow: 2px 2px 6px -1px $blue;
@@ -59,7 +60,7 @@ body {
     .checklist {
       padding: 2em;
       border: 1px solid white;
-      margin-block: 2em;
+      margin-top: 2em;
 
       .question {
         margin-bottom: 1em;
@@ -72,6 +73,12 @@ body {
           height: unset !important;
         }
       }
+    }
+
+    .submit_container {
+      padding: 2em;
+      display: flex;
+      justify-content: flex-end;
     }
   }
 }

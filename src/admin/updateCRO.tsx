@@ -5,10 +5,13 @@ import TextareaAutosize from "@mui/material/TextareaAutosize";
 import Button from "@mui/material/Button";
 
 const UpdateCRO = ({ checklists }: { checklists: any }) => {
+  const handleUpdateCRO = (e: any) => {
+    e.preventDefault();
+  };
   return (
     <div className='updateCRO__wrapper'>
       <h1>Update CRO</h1>
-      <form className='settings_container'>
+      <form className='settings_container' onSubmit={handleUpdateCRO}>
         {checklists.map((checklist: any) => (
           <div className='checklist' key={checklist.title + new Date()}>
             <h2>
@@ -52,7 +55,7 @@ const UpdateCRO = ({ checklists }: { checklists: any }) => {
         ))}
 
         <div className='submit_container'>
-          <Button type='submit'></Button>
+          <Button type='submit'>Submit changes</Button>
         </div>
       </form>
     </div>
