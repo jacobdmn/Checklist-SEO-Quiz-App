@@ -651,4 +651,89 @@ body {
     padding: 1.3em !important;
   }
 }
-/*# sourceMappingURL=index.css.map */
+
+input {
+  min-width: 300px !important;
+  min-height: 4em !important;
+}
+
+textarea {
+  font-size: 1em;
+}
+
+input,
+textarea {
+  cursor: text;
+}
+
+ul {
+  list-style: none;
+}
+
+ul li {
+  margin-left: 2em;
+}
+
+* {
+  border-color: white;
+  outline: white;
+}
+
+li {
+  margin-block: 1em !important;
+}
+
+h2 input {
+  font-size: 1.5em !important;
+}
+
+h3 input {
+  font-size: 1.2em !important;
+}
+
+h2,
+h3 {
+  margin-block: 1em !important;
+}
+
+input {
+  color: white !important;
+}
+
+body {
+  color: black;
+  font-size: 1.7em;
+}
+
+.updateCRO__wrapper {
+  width: 60vw;
+  padding: 3em;
+  display: -ms-grid;
+  display: grid;
+  gap: 2em;
+}
+
+.updateCRO__wrapper .settings_container {
+  background: #347ce9;
+  border-radius: 15px;
+  -webkit-box-shadow: 2px 2px 6px -1px #1e00ff;
+          box-shadow: 2px 2px 6px -1px #1e00ff;
+}
+
+.updateCRO__wrapper .settings_container .checklist {
+  padding: 2em;
+  border: 1px solid white;
+  margin-block: 2em;
+}
+
+.updateCRO__wrapper .settings_container .checklist .question {
+  margin-bottom: 1em;
+  padding: 1em;
+  border: 1px solid white;
+}
+
+.updateCRO__wrapper .settings_container .checklist h2 input {
+  font-size: 2em !important;
+  height: unset !important;
+}
+/*# sourceMappingURL=style.css.map */

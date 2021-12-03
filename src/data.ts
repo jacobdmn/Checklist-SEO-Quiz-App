@@ -88,15 +88,7 @@ Make it as effortless and easy as possible for your visitor to receive your offe
               `,
         ],
       },
-      {
-        questionTitle:
-          "Do you have positive, confidence building elements near your CTA?",
-        options: [
-          `Things that are close to your CTA should instill confidence in your visitors. For that reason, keep things that may invite negative thinking away from your CTA button.
-For instance, having the word “spam” near your form button will trigger negative thinking, even if you’re trying to assure your audience that you won’t spam them.
-`,
-        ],
-      },
+
       {
         questionTitle:
           "Do you address the main concerns or questions of your visitors?",
@@ -181,12 +173,6 @@ Rather than let that happen, make the few seconds of their attention that you do
           "Do you show a recently viewed items section for returning users?",
         options: [
           "This is a very useful section for shoppers that already visited the website and browsed any products. For such returning visits it will be a very good starting point for shopping. Also it will help to personalize your home page. But, of course, this applies to those shops with a large number of returning visitors.",
-        ],
-      },
-      {
-        questionTitle: "Do you show any social proof?",
-        options: [
-          "When shoppers know that you offer good shipping conditions, convenient return and refund policies, fast customer support and other similar things, they will know that it's safe to buy here, it will remove all fears and concerns. Therefore, you need to have dedicated section highlighting all that stuff on the home page (and site-wide too, you should always remind about it)",
         ],
       },
       {
