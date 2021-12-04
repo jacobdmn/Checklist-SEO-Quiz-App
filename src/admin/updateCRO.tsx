@@ -10,7 +10,7 @@ const UpdateCRO = ({ checklists }: { checklists: any }) => {
   };
   return (
     <div className='updateCRO__wrapper'>
-      <h1>Update CRO</h1>
+      <h1>Update CRO Checklists</h1>
       <form className='settings_container' onSubmit={handleUpdateCRO}>
         {checklists.map((checklist: any) => (
           <div className='checklist' key={checklist.title + new Date()}>
