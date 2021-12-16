@@ -159,7 +159,7 @@ input * {
 
 html {
   color: black;
-  overflow: scroll;
+  overflow: auto;
   scrollbar-color: white;
   margin-inline: auto;
   position: relative;
@@ -167,7 +167,6 @@ html {
 }
 
 body {
-  background: white;
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
