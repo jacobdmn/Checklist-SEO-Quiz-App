@@ -159,10 +159,8 @@ input * {
 
 html {
   color: black;
-  height: 100vh;
   overflow: scroll;
   scrollbar-color: white;
-  max-width: 1500px;
   margin-inline: auto;
   position: relative;
   font-size: 13px;
@@ -173,7 +171,6 @@ body {
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
-  min-height: 100vh;
   display: -ms-grid;
   display: grid;
   -webkit-box-pack: center;

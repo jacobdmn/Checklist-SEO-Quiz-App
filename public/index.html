@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,8 +13,18 @@
     <title>Rocket conversions Scored Checklist</title>
   </head>
   <body>
-    <div id="root" data-iframe-height></div>
+    <div id="root"></div>
 
-    <script src="https://raw.githubusercontent.com/davidjbradshaw/iframe-resizer/master/js/iframeResizer.contentWindow.js"></script>
+    <script>
+      setInterval(function () {
+        parent.postMessage(
+          {
+            height:
+              document.getElementsByClassName("App")[0].offsetHeight + 100,
+          },
+          "*"
+        );
+      }, 500);
+    </script>
   </body>
 </html>
