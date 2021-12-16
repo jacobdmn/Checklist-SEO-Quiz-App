@@ -4,10 +4,10 @@ import { NavLink } from "react-router-dom";
 const Header = () => {
   return (
     <div className='checklist__intro__container'>
-      <h1>
+      {/* <h1>
         Use these scored checklists to increase your conversion rate and
         revenue.
-      </h1>
+      </h1> */}
       <ul className='checklist__ul'>
         <li>
           <NavLink

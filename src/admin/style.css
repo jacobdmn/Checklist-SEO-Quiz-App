@@ -21,7 +21,7 @@ ul {
 }
 
 a {
-  color: black;
+  color: #fff !important;
   text-decoration: none;
   font-size: 1.6em;
   border: 3px solid pink;
