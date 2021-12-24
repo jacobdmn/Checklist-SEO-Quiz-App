@@ -92,7 +92,7 @@ const Content = ({ checklist }: { checklist: any }) => {
 
   useEffect(() => {
     setAnswers([]);
-    setCurrentQuestion(0);
+    setCurrentQuestion(20);
     setShowResult(false);
     setCheckedAnswersPerQuestion([]);
 

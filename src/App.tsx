@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 
 import Content from "./components/Content";
+import SendEmailQuiz from "./components/test_quiz_email";
 
 import checklists from "./data";
 
@@ -33,6 +34,8 @@ function App() {
           />
         </Routes>
       </div>
+
+      <SendEmailQuiz />
     </Router>
   );
 }

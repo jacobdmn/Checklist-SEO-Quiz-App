@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/system";
 
 import Button from "@mui/material/Button";
 
+import emailjs from "emailjs-com";
 import { init } from "emailjs-com";
-init("user_UIdPWAWbp27Vutic3cQO5");
+init("");
 
 const TextFieldStyled = styled(TextField)({
   minWidth: "400px",
@@ -22,16 +23,27 @@ const ShowResult: React.FC<{
   answers: any;
   numberOfAllOptions: number;
 }> = ({ answers, numberOfAllOptions }) => {
+  const form = useRef();
+
   const [loading, setLoading] = React.useState(false);
   const [emailSent, setEmailSent] = React.useState(false);
 
-  const handleSendCRO = (e?: any) => {
-    e && e.preventDefault();
+  const handleSendCRO = (e: any) => {
+    e.preventDefault();
 
-    setLoading(true);
-    setTimeout(() => {
-      setEmailSent(true);
-    }, 1500);
+    // setLoading(true);
+
+    emailjs
+      .sendForm("gmail", "quiz_result", e.target, "user_UIdPWAWbp27Vutic3cQO5")
+      .then(
+        (result) => {
+          setEmailSent(true);
+          alert("Sent !");
+        },
+        (error) => {
+          alert("Oops ! Problem accured ! " + error.text);
+        }
+      );
   };
   return !emailSent ? (
     <h2
@@ -58,24 +70,43 @@ const ShowResult: React.FC<{
         <br />
       </div>
       <div className='form_cta'>
-        <TextFieldStyled id='outlined-name' label='Name' variant='outlined' />
+        <form ref={form} onSubmit={handleSendCRO}>
+          <input type='text' name='user_name' />
+          <input type='url' name='user_business_url' />
+          <input type='email' name='user_email' />
+
+          <input type='submit' value='Send' />
+
+          <Button
+            type='submit'
+            onClick={handleSendCRO}
+            disabled={loading}
+            variant='contained'>
+            {loading ? "LOADING" : "Send Me!"}
+          </Button>
+        </form>
+
+        {/* <TextFieldStyled
+          id='outlined-name'
+          label='Name'
+          variant='outlined'
+          name='name'
+        />
         <TextFieldStyled
           id='outlined-business-url'
           type='url'
           required={false}
           label='Business URL'
           variant='outlined'
+          name='business_url'
         />
         <TextFieldStyled
           type='email'
           id='outlined-email'
-          label='Work Email'
+          label='Email'
           variant='outlined'
-        />
-
-        <Button onClick={handleSendCRO} disabled={loading} variant='contained'>
-          {loading ? "LOADING" : "Send Me!"}
-        </Button>
+          name='email'
+        /> */}
       </div>
     </h2>
   ) : (
@@ -124,3 +155,5 @@ const ShowResult: React.FC<{
 };
 
 export default ShowResult;
+
+
