@@ -388,6 +388,7 @@ body {
 
 .checklist__container .checklist_form_QA .checklist__questions .form_header h3.questionTitle {
   min-width: 320px;
+  height: 10ch;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;

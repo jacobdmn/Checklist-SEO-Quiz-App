@@ -5,6 +5,9 @@ import { styled } from "@mui/system";
 
 import Button from "@mui/material/Button";
 
+import { init } from "emailjs-com";
+init("user_UIdPWAWbp27Vutic3cQO5");
+
 const TextFieldStyled = styled(TextField)({
   minWidth: "400px",
   maxWidth: "95vw",
