@@ -8,9 +8,7 @@ import Button from "@mui/material/Button";
 const TextFieldStyled = styled(TextField)({
   minWidth: "400px",
   maxWidth: "95vw",
-  input: {
-    height: "5em",
-  },
+  input: { height: "5em" },
   "*, *:hover": {
     color: "white !important",
     borderColor: "white !important",
