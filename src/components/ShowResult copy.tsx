@@ -17,29 +17,41 @@ const TextFieldStyled = styled(TextField)({
 });
 
 const ShowResult: React.FC<{
-  checklist: any;
   answers: any;
   numberOfAllOptions: number;
-}> = ({ checklist, answers, numberOfAllOptions }) => {
+}> = ({ answers, numberOfAllOptions }) => {
   const form = useRef();
 
   const [loading, setLoading] = React.useState(false);
   const [emailSent, setEmailSent] = React.useState(false);
 
-  const score = (
-    (answers.flat().filter((x: boolean) => x === true).length * 100) /
-    numberOfAllOptions
-  ).toFixed(0);
+  const handleSendCRO = (e: any) => {
+    e.preventDefault();
 
-  const false_answers = answers
-    .map((question: boolean[], index: number) => {
-      if (question.includes(false))
-        return checklist.questions[index].questionTitle;
-      return question;
-    })
-    .filter((question: any) => !question.includes(true))
-    .join("\n")
-    .toString();
+    // setLoading(true);
+
+    alert("start");
+
+    emailjs
+      .sendForm(
+        "gmail_service",
+        "quiz_result",
+        e.target,
+        "user_UIdPWAWbp27Vutic3cQO5"
+      )
+      .then(
+        (result) => {
+          // setEmailSent(true);
+          // setLoading(false);
+          alert("Sent!");
+        },
+        (error) => {
+          alert("Oops ! Problem accured! " + error.text);
+          // setLoading(false);
+        }
+      );
+    alert("end");
+  };
   return !emailSent ? (
     <h2
       style={{
@@ -52,7 +64,11 @@ const ShowResult: React.FC<{
           maxWidth: "400px",
         }}>
         <h2>
-          Your score: {`${score}% 🚀`}
+          Your score:{" "}
+          {`${(
+            (answers.flat().filter((x: boolean) => x === true).length * 100) /
+            numberOfAllOptions
+          ).toFixed(0)}% 🚀`}
           {/* star system here */}
         </h2>
         <br />
@@ -60,63 +76,32 @@ const ShowResult: React.FC<{
         Enter your email to get the Audit + Results + List of action items
         <br />
       </div>
-      <form ref={form} className='form_cta'>
-        <TextFieldStyled
-          name='name'
-          type='text'
-          required={false}
-          label='Name'
-          variant='outlined'
-        />
-        <TextFieldStyled
+      <form ref={form} className='form_cta' onSubmit={handleSendCRO}>
+        <input type='email' name='email' />
+        <input type='submit' value='send' />
+
+        {/* <TextFieldStyled name='name' label='Name' variant='outlined' /> */}
+        {/* <TextFieldStyled
           name='business_url'
           type='url'
           required={false}
           label='Business URL'
           variant='outlined'
-        />
-        <TextFieldStyled
+        /> */}
+        {/* <TextFieldStyled
           name='email'
           type='email'
-          required
           label='Email'
           variant='outlined'
-        />
+        /> */}
 
-        <input type='hidden' name='checklist' value={checklist.title} />
-        <input type='hidden' name='score' value={score} />
-        <textarea
-          name='false_answers'
-          value={false_answers}
-          style={{ display: "hidden", whiteSpace: "pre-wrap" }}
-        />
-        <Button
+        {/* <Button
+          type='submit'
+          onClick={handleSendCRO}
           disabled={loading}
-          variant='contained'
-          onClick={() => {
-            setLoading(true);
-
-            emailjs
-              .sendForm(
-                "gmail_service",
-                "quiz_result",
-                form.current,
-                "user_UIdPWAWbp27Vutic3cQO5"
-              )
-              .then(
-                (result) => {
-                  setEmailSent(true);
-                  // alert("Sent!");
-                  console.log(false_answers);
-                },
-                (error) => {
-                  alert("Oops ! Problem accured! " + error.text);
-                  setLoading(false);
-                }
-              );
-          }}>
+          variant='contained'>
           {loading ? "LOADING" : "Send Me!"}
-        </Button>
+        </Button> */}
       </form>
     </h2>
   ) : (

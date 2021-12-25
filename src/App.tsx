@@ -34,8 +34,6 @@ function App() {
           />
         </Routes>
       </div>
-
-      <SendEmailQuiz />
     </Router>
   );
 }

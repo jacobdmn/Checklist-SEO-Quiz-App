@@ -1,40 +1,36 @@
 import React, { useRef } from "react";
 import emailjs from "emailjs-com";
 
-const ContactUs = () => {
+const SendQuizToEmail = () => {
   const form = useRef();
 
-  const sendEmail = (e: any) => {
-    e.preventDefault();
-
-    emailjs
-      .sendForm(
-        "gmail",
-        "quiz_result",
-        form.current,
-        "user_UIdPWAWbp27Vutic3cQO5"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-  };
-
   return (
-    <form ref={form} onSubmit={sendEmail}>
-      <label>Name</label>
-      <input type='text' name='user_name' />
-      <label>Email</label>
-      <input type='email' name='user_email' />
-      <label>Message</label>
-      <textarea name='message' />
-      <input type='submit' value='Send' />
+    <form ref={form}>
+      <input type='email' name='email' value='jacob.demmane@gmail.com' />
+      <input
+        type='button'
+        value='Send'
+        onClick={() => {
+          emailjs
+            .sendForm(
+              "gmail_service",
+              "quiz_result",
+              form.current,
+              "user_UIdPWAWbp27Vutic3cQO5"
+            )
+            .then(
+              (result) => {
+                alert("sent! " + result);
+                console.log(form.current);
+              },
+              (error) => {
+                alert("error: " + error.text);
+              }
+            );
+        }}
+      />
     </form>
   );
 };
 
-export default ContactUs;
+export default SendQuizToEmail;
