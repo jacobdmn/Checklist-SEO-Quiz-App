@@ -57,7 +57,12 @@ const ShowResult: React.FC<{
         </h2>
         <br />
         Thanks for using the Rocket CRO tool <br />
-        Enter your email to get the Audit + Results + List of action items
+        Enter your email to get:
+        <ul>
+          <li>the Audit</li>
+          <li>Results</li>
+          <li>List of action items</li>
+        </ul>
         <br />
       </div>
       <form ref={form} className='form_cta'>
@@ -88,7 +93,7 @@ const ShowResult: React.FC<{
         <textarea
           name='false_answers'
           value={false_answers}
-          style={{ display: "hidden", whiteSpace: "pre-wrap" }}
+          style={{ display: "none", whiteSpace: "pre-wrap" }}
         />
         <Button
           disabled={loading}
