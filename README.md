@@ -2,4 +2,4 @@
 
 ## build for [Rocket Conversions](https://rocket-conversions.com)
 
-## [View Trial Link](https://rocket-conversions-checklist-v22.netlify.app/)
+## [View Trial Link](https://rocket-conversions.com/conversion-rate-optimization-checklist/)
